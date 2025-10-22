@@ -9,6 +9,6 @@ data class MaskinvareKategori (
     val navn: String?,
     val systemId: Identifikator = Identifikator()
 ): FintLinks {
-    val links = this.createLinks()
-    override fun getLinks(): Map<String, List<Link>> = links
+    val _links = this.createLinks()
+    override fun getLinks(): Map<String, List<Link>> = _links
 }
