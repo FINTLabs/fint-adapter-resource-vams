@@ -6,20 +6,20 @@ import org.springframework.web.reactive.function.client.WebClient
 
 @Configuration
 class WebClientConfig(
-    private val idpProperties: IdpProperties,
     private val providerProperties: ProviderProperties,
-    private val webClientBuilder: WebClient.Builder
+    private val webClientBuilder: WebClient.Builder,
+    private val vamsClientProperties: VamsClientProperties
 ) {
-
-    @Bean("fintIdpWebClient")
-    fun fintIdpWebClient() =
-        webClientBuilder
-            .baseUrl(idpProperties.fintIdp)
-            .build()
 
     @Bean("providerWebClient")
     fun providerWebClient() =
         webClientBuilder
             .baseUrl(providerProperties.baseUrl)
+            .build()
+
+    @Bean("vamsWebClient")
+    fun vamsWebClient() =
+        webClientBuilder
+            .baseUrl(vamsClientProperties.baseUrl)
             .build()
 }

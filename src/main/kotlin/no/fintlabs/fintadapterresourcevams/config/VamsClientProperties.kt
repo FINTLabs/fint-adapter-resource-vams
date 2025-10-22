@@ -10,4 +10,5 @@ data class VamsClientProperties (
     val granttype: String,
     val apiToken: String,
     val countyCode: String,
+    val baseUrl: String,
 )
