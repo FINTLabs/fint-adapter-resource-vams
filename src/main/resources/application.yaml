@@ -1,0 +1,28 @@
+fint:
+  cron: "0 0 1 * * *"
+  adapter:
+    id: https://fintlabs.no/ressurs
+    base-url: https://beta.felleskomponent.no
+    registration-id: fint
+    org-id: fintlabs.no
+    heartbeat-interval: 3
+    capabilities:
+      digitalEnhet:
+        domain-name: ressurs
+        packageName: datautstyr
+        resource-name: digitalEnhet
+        fullSyncIntervalInDays: 1
+        deltaSyncInterval: IMMEDIATE
+      person:
+        domain-name: utdanning
+        packageName: larling
+        resource-name: person
+        fullSyncIntervalInDays: 1
+        deltaSyncInterval: IMMEDIATE
+      virksomhet:
+        domain-name: utdanning
+        packageName: larling
+        resource-name: virksomhet
+        fullSyncIntervalInDays: 1
+        deltaSyncInterval: IMMEDIATE
+
