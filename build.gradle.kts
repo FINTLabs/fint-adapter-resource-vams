@@ -30,6 +30,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
     implementation("no.fintlabs:fint-core-infra-models:2.1.2")
+    implementation("no.fint:fint-ressurs-resource-model-java:3.20.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
