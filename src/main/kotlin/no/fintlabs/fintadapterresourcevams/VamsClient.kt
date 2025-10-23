@@ -1,20 +1,24 @@
 package no.fintlabs.fintadapterresourcevams
 
+import jakarta.annotation.PostConstruct
+import kotlinx.coroutines.reactor.awaitSingle
 import no.fintlabs.adapter.models.AdapterContract
 import no.fintlabs.fintadapterresourcevams.auth.VamsIdpClient
 import no.fintlabs.fintadapterresourcevams.config.FintAdapterProperties
 import no.fintlabs.fintadapterresourcevams.config.ProviderProperties
+import no.fintlabs.fintadapterresourcevams.config.VamsClientProperties
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.http.HttpHeaders.AUTHORIZATION
 import org.springframework.stereotype.Component
+import org.springframework.web.client.body
 import org.springframework.web.reactive.function.client.WebClient
 
 @Component
 class VamsClient(
     @Qualifier("providerWebClient")
     private val webClient: WebClient,
-
     private val vamsIdpClient: VamsIdpClient,
+    private val vamsClientProperties: VamsClientProperties,
     private val providerProperties: ProviderProperties,
     private val fintAdapterProperties: FintAdapterProperties,
 ) {
@@ -35,11 +39,19 @@ class VamsClient(
     }
 
     // Header<Authorization, Bearer token>
-    suspend fun getRequestData() =
-        webClient.get()
-            .header(AUTHORIZATION, "bearer ${vamsIdpClient.getFintBearerToken()}")
-            .header("")
+    suspend fun getRequestData(url: String) {
+
+        val data = webClient.get()
+            .uri(vamsClientProperties.baseUrl + url)
+            .header(AUTHORIZATION, "bearer ${vamsIdpClient.getBearerToken()}")
             .retrieve()
+            .bodyToMono(String::class.java)
+            .awaitSingle()
+
+        println("VamsClient.getRequestData: $data")
+
+    }
+
 
 
 }
