@@ -13,16 +13,27 @@ fint:
         resource-name: digitalEnhet
         fullSyncIntervalInDays: 1
         deltaSyncInterval: IMMEDIATE
-      person:
-        domain-name: utdanning
-        packageName: larling
-        resource-name: person
+      Enhetsgruppe:
+        domain-name: ressurs
+        packageName: datautstyr
+        resource-name: Enhetsgruppe
         fullSyncIntervalInDays: 1
         deltaSyncInterval: IMMEDIATE
-      virksomhet:
-        domain-name: utdanning
-        packageName: larling
-        resource-name: virksomhet
+      Enhetstype:
+        domain-name: ressurs
+        packageName: datautstyr
+        resource-name: Enhetstype
         fullSyncIntervalInDays: 1
         deltaSyncInterval: IMMEDIATE
-
+      Status:
+        domain-name: ressurs
+        packageName: kodeverk
+        resource-name: status
+        fullSyncIntervalInDays: 1
+        deltaSyncInterval: IMMEDIATE
+      produsent:
+        domain-name: ressurs
+        packageName: kodeverk
+        resource-name: produsent
+        fullSyncIntervalInDays: 1
+        deltaSyncInterval: IMMEDIATE
