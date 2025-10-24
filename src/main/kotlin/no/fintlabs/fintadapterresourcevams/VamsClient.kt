@@ -38,12 +38,14 @@ class VamsClient(
         capabilities = this.capabilities
     }
 
-    // Header<Authorization, Bearer token>
     suspend fun getRequestData(url: String) {
+        val token = vamsIdpClient.getBearerToken()
 
         val data = webClient.get()
             .uri(vamsClientProperties.baseUrl + url)
-            .header(AUTHORIZATION, "bearer ${vamsIdpClient.getBearerToken()}")
+            .header(AUTHORIZATION, "Bearer $token")
+            .header("CountyCode", vamsClientProperties.countyCode)
+            .header("apiToken", vamsClientProperties.apiToken)
             .retrieve()
             .bodyToMono(String::class.java)
             .awaitSingle()

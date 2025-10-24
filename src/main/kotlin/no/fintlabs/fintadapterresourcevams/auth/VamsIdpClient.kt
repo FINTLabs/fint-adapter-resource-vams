@@ -1,10 +1,13 @@
 package no.fintlabs.fintadapterresourcevams.auth
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.coroutines.reactor.awaitSingle
 import no.fintlabs.fintadapterresourcevams.config.IdpProperties
 import no.fintlabs.fintadapterresourcevams.config.VamsClientProperties
 import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
+import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.client.WebClient
 
 @Component
@@ -15,23 +18,31 @@ class VamsIdpClient(
     private val webClient: WebClient
 ) {
 
-    suspend fun getBearerToken(): Any? {
 
-        val token = webClient.get()
+    suspend fun getBearerToken(): String {
+        val response = webClient.post()
             .uri(idpProperties.vamsIdp)
-            .header("grant_type", "client_credentials")
-            .header("client_id", vamsProperties.clientId)
-            .header("client_secret", vamsProperties.clientSecret)
-            .header("scope", vamsProperties.scope)
-            .header("county_code", vamsProperties.countyCode)
-            .header("apiToken", vamsProperties.apiToken)
+            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+            .body(
+                BodyInserters.fromFormData("client_id", vamsProperties.clientId)
+                    .with("client_secret", vamsProperties.clientSecret)
+                    .with("grant_type", "client_credentials")
+                    .with("scope", vamsProperties.scope)
+            )
             .retrieve()
-            .bodyToMono(String::class.java)
+            .bodyToMono(TokenResponse::class.java)
             .awaitSingle()
 
-        println("VamsIdpClient.getBearerToken: $token")
-        return token
+        println("Azure AD Access Token: ${response.accessToken}")
+        return response.accessToken ?: throw IllegalStateException("No token returned from Azure AD")
     }
+
+    data class TokenResponse(
+        @JsonProperty("token_type") val tokenType: String?,
+        @JsonProperty("expires_in") val expiresIn: Long,
+        @JsonProperty("ext_expires_in") val extExpiresIn: Long,
+        @JsonProperty("access_token") val accessToken: String?,
+    )
 
 
 //    private fun createFormData(): MultiValueMap<String, String> =
