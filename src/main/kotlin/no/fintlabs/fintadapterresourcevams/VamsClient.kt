@@ -23,7 +23,6 @@ class VamsClient(
     private val fintAdapterProperties: FintAdapterProperties,
 ) {
 
-// TODO -- One thing at a time
 //    @PostConstruct
 //    suspend fun init() {
 //        val register = register()

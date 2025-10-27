@@ -18,7 +18,6 @@ class VamsIdpClient(
     private val webClient: WebClient
 ) {
 
-
     suspend fun getBearerToken(): String {
         val response = webClient.post()
             .uri(idpProperties.vamsIdp)
@@ -33,7 +32,6 @@ class VamsIdpClient(
             .bodyToMono(TokenResponse::class.java)
             .awaitSingle()
 
-        println("Azure AD Access Token: ${response.accessToken}")
         return response.accessToken ?: throw IllegalStateException("No token returned from Azure AD")
     }
 
