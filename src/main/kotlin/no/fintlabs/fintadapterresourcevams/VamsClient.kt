@@ -1,6 +1,5 @@
 package no.fintlabs.fintadapterresourcevams
 
-import jakarta.annotation.PostConstruct
 import kotlinx.coroutines.reactor.awaitSingle
 import no.fintlabs.adapter.models.AdapterContract
 import no.fintlabs.fintadapterresourcevams.auth.VamsIdpClient
@@ -10,7 +9,6 @@ import no.fintlabs.fintadapterresourcevams.config.VamsClientProperties
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.http.HttpHeaders.AUTHORIZATION
 import org.springframework.stereotype.Component
-import org.springframework.web.client.body
 import org.springframework.web.reactive.function.client.WebClient
 
 @Component
@@ -22,12 +20,6 @@ class VamsClient(
     private val providerProperties: ProviderProperties,
     private val fintAdapterProperties: FintAdapterProperties,
 ) {
-
-//    @PostConstruct
-//    suspend fun init() {
-//        val register = register()
-//        println("Register " + register.statusCode)
-//    }
 
     private fun ProviderProperties.createContract() = AdapterContract().apply {
         adapterId = this.adapterId
