@@ -10,7 +10,7 @@ fint:
       digitalEnhet:
         domain-name: ressurs
         packageName: datautstyr
-        resource-name: digitalEnhet
+        resource-name: digitalenhetresource
         fullSyncIntervalInDays: 1
         deltaSyncInterval: IMMEDIATE
       Enhetsgruppe:
@@ -37,3 +37,18 @@ fint:
         resource-name: produsent
         fullSyncIntervalInDays: 1
         deltaSyncInterval: IMMEDIATE
+
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          fint-idp:
+            token-uri: https://idp.felleskomponent.no/nidp/oauth/nam/token?resourceServer=fint-api
+        registration:
+          fint:
+            authorization-grant-type: password
+            client-id:   "6fca770b-4645-4dd4-b286-e1912b846ed5"
+            client-secret: "G7iK2O-C_L6nbwORHHrtc_aH8tp_oQwROJBw7QwRJ-zEjdTV84rnfUHhxiGhuDQrh8L731q7HkFA9PeSCLNg5Q"
+            provider: fint-idp
+            scope: fint-adapter
