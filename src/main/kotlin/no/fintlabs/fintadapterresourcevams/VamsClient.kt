@@ -42,9 +42,5 @@ class VamsClient(
             .awaitSingle()
 
         println("VamsClient.getRequestData: $data")
-
     }
-
-
-
 }
