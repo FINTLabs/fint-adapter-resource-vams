@@ -1,0 +1,30 @@
+{
+  "_embedded": {
+    "_entries": [
+      {
+        "navn": "MaskinGruppe_",
+        "systemId": {
+          "identifikatorverdi": 1234
+        },
+        "timestamp": {
+          "opprettet": "2027-06-19T08:00:00",
+          "oppdatert": "2074-06-19T08:00:00"
+        },
+        "_links": {
+          "virksomhet": [
+            {
+              "href": "https://api.felleskomponent.no/administrasjon/organisasjon/organisasjonselement/organisasjonskode/123"
+            }
+          ],
+          "plattform": [],
+          "maskinvare": null,
+          "self": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/datautstyr/maskingruppering/systemId/123"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -3,6 +3,7 @@ package no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.datautstyr
 import no.fint.model.felles.kompleksedatatyper.Identifikator
 import no.fint.model.resource.FintLinks
 import no.fint.model.resource.Link
+import no.fint.model.resource.ressurs.datautstyr.EnhetsgruppeResource
 import no.fintlabs.fintadapterresourcevams.model.vams.Timestamp
 
 data class MaskinGruppering (
@@ -12,4 +13,14 @@ data class MaskinGruppering (
 ): FintLinks {
     val _links = this.createLinks()
     override fun getLinks(): Map<String, List<Link>> = _links
+
+    fun toFintModel(): EnhetsgruppeResource {
+        val fintName = navn
+        val id = systemId
+        return EnhetsgruppeResource().apply {
+            systemId = id
+            navn = fintName
+        }
+    }
+
 }
