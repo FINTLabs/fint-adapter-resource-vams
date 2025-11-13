@@ -14,13 +14,11 @@ class ModelConvertionTests {
 
     @Test
     fun Test_Maskinvare_toFintModel_singular_mock () {
-        // Importing and declaring the mock data.
         val path = Paths.get("src/test/kotlin/no/fintlabs/fintadapterresourcevams/resources/MaskinvareMock.json")
         val jsonString = path.toFile().readText()
         val json: ResourceCollection<Maskinvare> = jacksonObjectMapper().readValue(jsonString)
         val maskinvare: Maskinvare = json.embedded.entries.iterator().next()
 
-        // Implimenting Maskinvare.toFintModel() function
         val digitalEnhet: DigitalEnhetResource = maskinvare.toFintModel()
         println(digitalEnhet.toString())
     }
