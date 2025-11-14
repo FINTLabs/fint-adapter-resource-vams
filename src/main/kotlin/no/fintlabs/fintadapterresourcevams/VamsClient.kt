@@ -1,12 +1,15 @@
 package no.fintlabs.fintadapterresourcevams
 
 import kotlinx.coroutines.reactor.awaitSingle
+import no.fint.model.resource.FintLinks
 import no.fintlabs.adapter.models.AdapterContract
 import no.fintlabs.fintadapterresourcevams.auth.VamsIdpClient
 import no.fintlabs.fintadapterresourcevams.config.FintAdapterProperties
 import no.fintlabs.fintadapterresourcevams.config.ProviderProperties
 import no.fintlabs.fintadapterresourcevams.config.VamsClientProperties
+import no.fintlabs.fintadapterresourcevams.model.vams.ResourceCollection
 import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.HttpHeaders.AUTHORIZATION
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
@@ -29,7 +32,7 @@ class VamsClient(
         capabilities = this.capabilities
     }
 
-    suspend fun getRequestData(url: String) {
+    suspend fun getRequestData(url: String): ResourceCollection<FintLinks> {
         val token = vamsIdpClient.getBearerToken()
 
         val data = webClient.get()
@@ -38,9 +41,9 @@ class VamsClient(
             .header("CountyCode", vamsClientProperties.countyCode)
             .header("apiToken", vamsClientProperties.apiToken)
             .retrieve()
-            .bodyToMono(String::class.java)
+            .bodyToMono(object : ParameterizedTypeReference<ResourceCollection<FintLinks>>() {})
             .awaitSingle()
 
-        println("VamsClient.getRequestData: $data")
+        return data as ResourceCollection<FintLinks>
     }
 }
