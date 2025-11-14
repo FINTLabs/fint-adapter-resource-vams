@@ -1,0 +1,22 @@
+{
+  "_embedded": {
+    "_entries": [
+      {
+        "kode": {
+          "identifikatorverdi": "123"
+        },
+        "navn": "PC",
+        "systemId": {
+          "identifikatorverdi": 123
+        },
+        "_links": {
+          "self": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/maskinvarekategori/systemId/123"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
