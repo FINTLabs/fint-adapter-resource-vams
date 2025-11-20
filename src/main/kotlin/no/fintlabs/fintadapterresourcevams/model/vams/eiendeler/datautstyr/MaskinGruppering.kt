@@ -5,6 +5,7 @@ import no.fint.model.resource.FintLinks
 import no.fint.model.resource.Link
 import no.fint.model.resource.ressurs.datautstyr.EnhetsgruppeResource
 import no.fintlabs.fintadapterresourcevams.model.vams.Timestamp
+import no.fintlabs.fintadapterresourcevams.model.vams.getLinkOrNull
 
 data class MaskinGruppering (
     val navn: String,
@@ -17,9 +18,15 @@ data class MaskinGruppering (
     fun toFintModel(): EnhetsgruppeResource {
         val fintName = navn
         val id = systemId
+        val org = _links.getLinkOrNull("virksomhet")
+        val unitType = _links.getLinkOrNull("enhetstype")
+        val platform = _links.getLinkOrNull("plattform")
         return EnhetsgruppeResource().apply {
             systemId = id
             navn = fintName
+            addOrganisasjonsenhet(org)
+            addEnhetstype(unitType)
+            addPlattform(platform)
         }
     }
 

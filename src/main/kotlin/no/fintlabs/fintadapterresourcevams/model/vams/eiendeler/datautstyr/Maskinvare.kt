@@ -1,6 +1,5 @@
 package no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.datautstyr
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import no.fint.model.felles.kompleksedatatyper.Identifikator
 import no.fint.model.resource.FintLinks
 import no.fint.model.resource.Link
@@ -15,9 +14,8 @@ data class Maskinvare(
     val navn: maskinvareNavn,
     val timestamp: Timestamp
 ): FintLinks {
-    @JsonProperty("_links")
-    val links = this.createLinks()
-    override fun getLinks(): Map<String, List<Link>> = links
+    val _links = this.createLinks()
+    override fun getLinks(): Map<String, List<Link>> = _links
 
     fun toFintModel(): DigitalEnhetResource {
         val fintName = "${navn.produsent}, ${navn.modell}, ${navn.modellspesifikasjon}"
