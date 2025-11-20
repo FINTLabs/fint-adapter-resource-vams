@@ -12,4 +12,3 @@ class Embedded<T: FintLinks> {
     @JsonProperty("_entries")
     val entries: List<T> = emptyList()
 }
-
