@@ -1,6 +1,8 @@
 fint:
   cron: "0 0 1 * * *"
   adapter:
+    username:
+    password:
     id: https://fintlabs.no/ressurs
     base-url: https://beta.felleskomponent.no
     registration-id: fint
@@ -48,7 +50,7 @@ spring:
         registration:
           fint:
             authorization-grant-type: password
-            client-id:   "6fca770b-4645-4dd4-b286-e1912b846ed5"
-            client-secret: "G7iK2O-C_L6nbwORHHrtc_aH8tp_oQwROJBw7QwRJ-zEjdTV84rnfUHhxiGhuDQrh8L731q7HkFA9PeSCLNg5Q"
+            client-id: ${fint.adapter.client-id}
+            client-secret: ${fint.adapter.client-secret}
             provider: fint-idp
             scope: fint-adapter
