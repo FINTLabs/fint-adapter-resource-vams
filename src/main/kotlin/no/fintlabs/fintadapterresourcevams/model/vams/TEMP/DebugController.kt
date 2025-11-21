@@ -1,6 +1,7 @@
 package no.fintlabs.fintadapterresourcevams.model.vams.TEMP
 
 import no.fintlabs.fintadapterresourcevams.VamsClient
+import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.kodeverk.MaskinvareKategori
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.web.bind.annotation.RestController
 
@@ -9,8 +10,13 @@ class DebugController(
     private val vamsClient: VamsClient
 ) {
 
-//    @Scheduled(fixedRate = 15_000)
-    suspend fun getMaskinVareKategoriData() = vamsClient.getRequestData("/kodeverk/maskinvarekategori")
+    @Scheduled(fixedRate = 15_000)
+    suspend fun getMaskinVareKategoriData() = vamsClient.getRequestData(
+        "kodeverk/maskinvarekategori", MaskinvareKategori::class.java
+    )
+
+
+
 
 
 

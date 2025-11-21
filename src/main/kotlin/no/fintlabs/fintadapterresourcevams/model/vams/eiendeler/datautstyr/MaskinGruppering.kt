@@ -29,5 +29,4 @@ data class MaskinGruppering (
             addPlattform(platform)
         }
     }
-
 }

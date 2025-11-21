@@ -32,18 +32,18 @@ class VamsClient(
         capabilities = this.capabilities
     }
 
-    suspend fun getRequestData(url: String): ResourceCollection<FintLinks> {
+    suspend fun <T: FintLinks>getRequestData(url: String, clazz: Class<T>): ResourceCollection<T> {
+        val typeReference = object : ParameterizedTypeReference<ResourceCollection<T>>() {}
+
         val token = vamsIdpClient.getBearerToken()
 
-        val data = webClient.get()
+        return webClient.get()
             .uri(vamsClientProperties.baseUrl + url)
             .header(AUTHORIZATION, "Bearer $token")
             .header("CountyCode", vamsClientProperties.countyCode)
             .header("apiToken", vamsClientProperties.apiToken)
             .retrieve()
-            .bodyToMono(object : ParameterizedTypeReference<ResourceCollection<FintLinks>>() {})
+            .bodyToMono(typeReference)
             .awaitSingle()
-
-        return data as ResourceCollection<FintLinks>
     }
 }
