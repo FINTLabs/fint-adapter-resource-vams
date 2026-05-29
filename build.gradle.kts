@@ -1,7 +1,7 @@
 plugins {
-    kotlin("jvm") version "1.9.25"
-    kotlin("plugin.spring") version "1.9.25"
-    id("org.springframework.boot") version "3.5.6"
+    kotlin("jvm") version "2.2.0"
+    kotlin("plugin.spring") version "2.2.0"
+    id("org.springframework.boot") version "4.0.0"
     id("io.spring.dependency-management") version "1.1.7"
 }
 
@@ -32,6 +32,8 @@ dependencies {
     implementation("no.fintlabs:fint-core-infra-models:2.1.2")
     implementation("no.fintlabs:fint-core-adapter-common:0.1.6-rc-7")
     implementation("no.fint:fint-ressurs-resource-model-java:3.21.10")
+
+    testImplementation("no.fintlabs:dynamisk-adapter-core-lib:3.21.11")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")

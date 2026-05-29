@@ -10,5 +10,6 @@ data class ProviderProperties (
     val heartbeatIntervalInMinutes: Byte = 3,
     val capabilities: List<AdapterCapability> = listOf(),
 ) {
+    //TODO: Is this correct?
     val adapterId = "https://$orgId/ressurs"
 }
