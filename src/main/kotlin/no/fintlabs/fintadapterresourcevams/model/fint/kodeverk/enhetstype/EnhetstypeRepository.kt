@@ -8,6 +8,7 @@ import no.fintlabs.fintadapterresourcevams.VamsClient
 import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.kodeverk.MaskinvareKategori
 import org.springframework.stereotype.Repository
 
+//TODO: This is not supposed to be here..?
 @Repository
 abstract class EnhetstypeRepository(
     private val vamsClient: VamsClient

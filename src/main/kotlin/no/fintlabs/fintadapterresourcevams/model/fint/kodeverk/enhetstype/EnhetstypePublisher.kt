@@ -6,6 +6,7 @@ import no.fintlabs.adapter.datasync.ResourcePublisher
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 
+//TODO: This is not supposed to be here..?
 @Service
 abstract class EnhetstypePublisher(
     private val repository: EnhetstypeRepository,

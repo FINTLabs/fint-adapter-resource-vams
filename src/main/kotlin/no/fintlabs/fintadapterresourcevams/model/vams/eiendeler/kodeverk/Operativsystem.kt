@@ -4,6 +4,7 @@ import no.fint.model.felles.kompleksedatatyper.Identifikator
 import no.fint.model.resource.FintLinks
 import no.fint.model.resource.Link
 
+// TODO: REMOVE THIS. No longer relevant
 data class Operativsystem (
     val systemId: Identifikator = Identifikator(),
     val navn: String,
