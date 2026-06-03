@@ -1,10 +1,10 @@
 package no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.datautstyr
 
-import no.fint.model.felles.kompleksedatatyper.Identifikator
-import no.fint.model.resource.FintLinks
-import no.fint.model.resource.Link
-import no.fint.model.resource.ressurs.datautstyr.EnhetsgruppemedlemskapResource
 import no.fintlabs.fintadapterresourcevams.model.vams.getLinkOrNull
+import no.novari.fint.model.felles.kompleksedatatyper.Identifikator
+import no.novari.fint.model.resource.FintLinks
+import no.novari.fint.model.resource.Link
+import no.novari.fint.model.resource.ressurs.datautstyr.EnhetsgruppemedlemskapResource
 
 data class MaskinGruppeMedlemsskap(
     val systemId: Identifikator = Identifikator(),

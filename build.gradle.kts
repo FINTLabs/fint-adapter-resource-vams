@@ -9,6 +9,7 @@ group = "no.fintlabs"
 version = "0.0.1-SNAPSHOT"
 description = "fint-adapter-resource-vams"
 
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
@@ -29,11 +30,9 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
+    implementation("no.novari:fint-ressurs-resource-model-java:4.0.10")
+    implementation("no.fintlabs:fint-core-adapter-common:0.1.6-rc-9")
     implementation("no.fintlabs:fint-core-infra-models:2.1.2")
-    implementation("no.fintlabs:fint-core-adapter-common:0.1.6-rc-7")
-    implementation("no.fint:fint-ressurs-resource-model-java:3.21.10")
-
-    testImplementation("no.fintlabs:dynamisk-adapter-core-lib:3.21.11")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")

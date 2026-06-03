@@ -6,6 +6,7 @@ import no.fintlabs.adapter.datasync.SyncData
 import no.fintlabs.adapter.models.sync.SyncType
 import no.fintlabs.fintadapterresourcevams.VamsClient
 import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.kodeverk.MaskinvareKategori
+import no.novari.fint.model.resource.ressurs.kodeverk.EnhetstypeResource
 import org.springframework.stereotype.Repository
 
 //TODO: This is not supposed to be here..?

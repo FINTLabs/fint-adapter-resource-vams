@@ -1,9 +1,9 @@
 package no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.kodeverk
 
-import no.fint.model.felles.kompleksedatatyper.Identifikator
-import no.fint.model.resource.FintLinks
-import no.fint.model.resource.Link
-import no.fint.model.resource.ressurs.kodeverk.EnhetstypeResource
+import no.novari.fint.model.felles.kompleksedatatyper.Identifikator
+import no.novari.fint.model.resource.FintLinks
+import no.novari.fint.model.resource.Link
+import no.novari.fint.model.resource.ressurs.kodeverk.EnhetstypeResource
 
 data class MaskinvareKategori (
     val kode: Identifikator?,

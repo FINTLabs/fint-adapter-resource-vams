@@ -1,13 +1,11 @@
 package no.fintlabs.fintadapterresourcevams.model.fint.datautstyr.enhetsgruppe
 
-import no.fint.model.resource.ressurs.datautstyr.DigitalEnhetResource
-import no.fint.model.resource.ressurs.datautstyr.EnhetsgruppeResource
 import no.fintlabs.adapter.datasync.ResourceRepository
 import no.fintlabs.adapter.datasync.SyncData
 import no.fintlabs.adapter.models.sync.SyncType
 import no.fintlabs.fintadapterresourcevams.VamsClient
 import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.datautstyr.MaskinGruppering
-import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.datautstyr.Maskinvare
+import no.novari.fint.model.resource.ressurs.datautstyr.EnhetsgruppeResource
 import org.springframework.stereotype.Repository
 
 @Repository

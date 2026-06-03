@@ -1,8 +1,8 @@
 package no.fintlabs.fintadapterresourcevams.model.fint.kodeverk.enhetstype
 
-import no.fint.model.resource.ressurs.kodeverk.EnhetstypeResource
 import no.fintlabs.adapter.config.AdapterProperties
 import no.fintlabs.adapter.datasync.ResourcePublisher
+import no.novari.fint.model.resource.ressurs.kodeverk.EnhetstypeResource
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 

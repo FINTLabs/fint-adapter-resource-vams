@@ -10,6 +10,9 @@ import no.fintlabs.fintadapterresourcevams.model.vams.ResourceCollection
 import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.datautstyr.MaskinGruppering
 import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.datautstyr.Maskinvare
 import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.kodeverk.MaskinvareKategori
+import no.novari.fint.model.resource.ressurs.datautstyr.DigitalEnhetResource
+import no.novari.fint.model.resource.ressurs.datautstyr.EnhetsgruppeResource
+import no.novari.fint.model.resource.ressurs.kodeverk.EnhetstypeResource
 import java.nio.file.Paths
 import kotlin.test.Test
 

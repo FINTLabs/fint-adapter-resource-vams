@@ -6,6 +6,7 @@ import no.fintlabs.adapter.datasync.SyncData
 import no.fintlabs.adapter.models.sync.SyncType
 import no.fintlabs.fintadapterresourcevams.VamsClient
 import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.datautstyr.Maskinvare
+import no.novari.fint.model.resource.ressurs.datautstyr.DigitalEnhetResource
 import org.springframework.stereotype.Repository
 
 @Repository
