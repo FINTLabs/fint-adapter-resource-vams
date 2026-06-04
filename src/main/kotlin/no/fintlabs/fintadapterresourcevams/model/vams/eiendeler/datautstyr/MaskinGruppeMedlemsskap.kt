@@ -14,12 +14,12 @@ data class MaskinGruppeMedlemsskap(
 
     fun toFintModel(): EnhetsgruppemedlemskapResource {
         val id = systemId
-        val org = _links.getLinkOrNull("virksomhet")
+        val group = _links.getLinkOrNull("maskingruppering")
         val unitType = _links.getLinkOrNull("enhetstype")
         return EnhetsgruppemedlemskapResource().apply {
             systemId = id
-            addOrganisasjonsenhet(org)
-            addEnhetstype(unitType)
+            addEnhetsgruppe(group)
+            addDigitalEnhet(unitType)
         }
     }
 }
