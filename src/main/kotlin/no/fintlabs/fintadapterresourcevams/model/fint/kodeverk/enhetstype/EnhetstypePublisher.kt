@@ -14,7 +14,7 @@ abstract class EnhetstypePublisher(
 
     @Scheduled(cron = "\${fint.cron}")
     suspend fun performFullSync() {
-        println("\n :: Starting Fullsync of Enhetsgruppe :: \n")
+        println("\n :: Starting Fullsync of Enhetstype :: \n")
         submit(repository.fetchResources())
     }
 }

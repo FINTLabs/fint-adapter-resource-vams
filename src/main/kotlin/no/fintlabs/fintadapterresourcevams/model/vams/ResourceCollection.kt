@@ -1,7 +1,7 @@
 package no.fintlabs.fintadapterresourcevams.model.vams
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import no.fint.model.resource.FintLinks
+import no.novari.fint.model.resource.FintLinks
 
 class ResourceCollection<T : FintLinks> {
     @JsonProperty("_embedded")

@@ -1,7 +1,7 @@
 package no.fintlabs.fintadapterresourcevams
 
 import kotlinx.coroutines.reactor.awaitSingle
-import no.fint.model.resource.FintLinks
+import no.novari.fint.model.resource.FintLinks
 import no.fintlabs.adapter.models.AdapterContract
 import no.fintlabs.fintadapterresourcevams.auth.VamsIdpClient
 import no.fintlabs.fintadapterresourcevams.config.FintAdapterProperties
@@ -32,7 +32,7 @@ class VamsClient(
         capabilities = this.capabilities
     }
 
-    suspend fun <T: FintLinks>getRequestData(url: String, clazz: Class<T>): ResourceCollection<T> {
+    suspend fun <T: FintLinks>getRequestData(url: String): ResourceCollection<T> {
         val typeReference = object : ParameterizedTypeReference<ResourceCollection<T>>() {}
 
         val token = vamsIdpClient.getBearerToken()

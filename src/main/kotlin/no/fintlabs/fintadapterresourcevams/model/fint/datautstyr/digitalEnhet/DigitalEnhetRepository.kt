@@ -1,6 +1,5 @@
 package no.fintlabs.fintadapterresourcevams.model.fint.datautstyr.digitalEnhet
 
-import no.fint.model.resource.ressurs.datautstyr.DigitalEnhetResource
 import no.fintlabs.adapter.datasync.ResourceRepository
 import no.fintlabs.adapter.datasync.SyncData
 import no.fintlabs.adapter.models.sync.SyncType
@@ -15,9 +14,7 @@ abstract class DigitalEnhetRepository(
 ): ResourceRepository<DigitalEnhetResource> {
 
     suspend fun fetchResources(): SyncData<DigitalEnhetResource> {
-        val data = vamsClient.getRequestData(
-            "datautstyr/maskinvare/", Maskinvare::class.java
-        )
+        val data = vamsClient.getRequestData<Maskinvare>("datautstyr/maskinvare/")
         return SyncData(data.unwrap { it.toFintModel() }, SyncType.FULL)
     }
     override fun getUpdatedResources() = emptyList<DigitalEnhetResource>()

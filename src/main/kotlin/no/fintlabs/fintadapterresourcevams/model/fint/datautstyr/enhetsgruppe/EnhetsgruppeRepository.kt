@@ -14,9 +14,7 @@ abstract class EnhetsgruppeRepository(
 ): ResourceRepository<EnhetsgruppeResource> {
 
     suspend fun fetchResources(): SyncData<EnhetsgruppeResource> {
-        val data = vamsClient.getRequestData(
-            "datautstyr/maskingruppering/", MaskinGruppering::class.java
-        )
+        val data = vamsClient.getRequestData<MaskinGruppering>("datautstyr/maskingruppering/")
         return SyncData(data.unwrap { it.toFintModel() }, SyncType.FULL)
     }
     override fun getUpdatedResources() = emptyList<EnhetsgruppeResource>()

@@ -5,6 +5,7 @@ import no.novari.fint.model.felles.kompleksedatatyper.Periode
 import no.novari.fint.model.resource.FintLinks
 import no.novari.fint.model.resource.Link
 import no.novari.fint.model.resource.ressurs.kodeverk.EnhetstypeResource
+import no.novari.fint.model.resource.ressurs.kodeverk.StatusResource
 
 data class Status(
     val gyldighetsperiode: Periode? = null,
@@ -16,13 +17,13 @@ data class Status(
     val _links = this.createLinks()
     override fun getLinks(): Map<String, List<Link>> = _links
 
-    fun toFintModel(): EnhetstypeResource {
+    fun toFintModel(): StatusResource {
         val periode = gyldighetsperiode
         val fintKode = kode.identifikatorverdi.toString()
         val fintName = navn
         val passivStatus = passiv
         val id = systemId
-        return EnhetstypeResource().apply {
+        return StatusResource().apply {
             gyldighetsperiode = periode
             systemId = id
             kode = fintKode
