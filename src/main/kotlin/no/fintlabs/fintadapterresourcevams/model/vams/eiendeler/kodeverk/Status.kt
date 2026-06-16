@@ -4,7 +4,6 @@ import no.novari.fint.model.felles.kompleksedatatyper.Identifikator
 import no.novari.fint.model.felles.kompleksedatatyper.Periode
 import no.novari.fint.model.resource.FintLinks
 import no.novari.fint.model.resource.Link
-import no.novari.fint.model.resource.ressurs.kodeverk.EnhetstypeResource
 import no.novari.fint.model.resource.ressurs.kodeverk.StatusResource
 
 data class Status(
