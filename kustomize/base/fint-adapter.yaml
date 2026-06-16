@@ -1,0 +1,18 @@
+apiVersion: fintlabs.no/v1alpha1
+kind: FintAdapter
+metadata:
+  name: adapter-resource-vams
+  namespace: org-dash
+  labels:
+    app.kubernetes.io/name: fint-adapter-resource-vams
+    app.kubernetes.io/instance: fint-adapter-resource-vams_org-dash
+    app.kubernetes.io/version: latest
+    app.kubernetes.io/component: adapter
+    app.kubernetes.io/part-of: fint-core
+    fintlabs.no/team: core
+    fintlabs.no/org-id: org-dot
+spec:
+  orgId: org-dot
+  note: Sender VAMS data til FINT
+  components:
+    - TODO

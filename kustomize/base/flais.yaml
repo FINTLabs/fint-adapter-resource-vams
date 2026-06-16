@@ -1,0 +1,37 @@
+apiVersion: fintlabs.no/v1alpha1
+kind: Job
+metadata:
+  name: fint-adapter-resource-vams
+  namespace: fintlabs-no
+  labels:
+    app.kubernetes.io/name: fint-adapter-resource-vams
+    app.kubernetes.io/instance: fint-adapter-resource-vams_fintlabs_no
+    app.kubernetes.io/version: latest
+    app.kubernetes.io/component: adapter
+    app.kubernetes.io/part-of: fint-core
+    fintlabs.no/team: core
+    fintlabs.no/org-id: fintlabs.no
+spec:
+  imagePullPolicy: Always
+  orgId: fintlabs.no
+  image: ghcr.io/fintlabs/fint-adapter-resource-vams:sha-0000000
+  env:
+    - name: JAVA_TOOL_OPTIONS
+      value: '-XX:+ExitOnOutOfMemoryError -Xmx512M'
+    - name: fint.adapter.base-url
+      value: 'https://beta.felleskomponent.no'
+    - name: fint.adapter.org-id
+      value: 'org-dot'
+    - name: fint.adapter.id
+      value: https://vigoiks.no/fintlabs-no/XXXXXX
+  envFrom:
+    - secretRef:
+        name: fint-adapter-resource-vams-credentials
+  resources:
+    limits:
+      memory: "512Mi"
+      cpu: "250m"
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+  restartPolicy: Never
