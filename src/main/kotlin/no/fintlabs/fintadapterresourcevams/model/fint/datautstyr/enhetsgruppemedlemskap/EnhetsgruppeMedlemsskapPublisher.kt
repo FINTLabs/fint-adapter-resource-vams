@@ -11,6 +11,7 @@ abstract class EnhetsgruppeMedlemsskapPublisher(
     private val repository: EnhetsgruppeMedlemsskapRepository,
     props: AdapterProperties
 ) : ResourcePublisher<EnhetsgruppemedlemskapResource, EnhetsgruppeMedlemsskapRepository>(repository, props)  {
+
     @Scheduled(cron = "\${fint.cron}")
     suspend fun performFullSync() {
         println("\n :: Starting Fullsync of EnhetsgruppeMedlemsskap :: \n")

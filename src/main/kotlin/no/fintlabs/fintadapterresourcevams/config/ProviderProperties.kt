@@ -9,7 +9,4 @@ data class ProviderProperties (
     val orgId: String = "fintlabs.no",
     val heartbeatIntervalInMinutes: Byte = 3,
     val capabilities: List<AdapterCapability> = listOf(),
-) {
-    //TODO: Is this correct?
-    val adapterId = "https://$orgId/ressurs"
-}
+)

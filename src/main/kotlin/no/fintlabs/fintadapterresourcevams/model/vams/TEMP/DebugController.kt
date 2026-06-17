@@ -11,13 +11,8 @@ class DebugController(
 ) {
 
     @Scheduled(fixedRate = 15_000)
-    suspend fun getMaskinVareKategoriData() = vamsClient.getRequestData(
-        "kodeverk/maskinvarekategori", MaskinvareKategori::class.java
+    suspend fun getMaskinVareKategoriData() = vamsClient.getRequestData<MaskinvareKategori>(
+        "kodeverk/maskinvarekategori",
     )
-
-
-
-
-
 
 }
