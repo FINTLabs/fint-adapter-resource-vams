@@ -1,5 +1,6 @@
 package no.fintlabs.fintadapterresourcevams.model.fint.kodeverk.plattform
 
+import kotlinx.coroutines.runBlocking
 import no.fintlabs.adapter.config.AdapterProperties
 import no.fintlabs.adapter.datasync.ResourcePublisher
 import no.novari.fint.model.resource.ressurs.kodeverk.PlattformResource
@@ -13,7 +14,7 @@ abstract class PlattformPublisher(
 ): ResourcePublisher<PlattformResource, PlattformRepository>(repository, props) {
 
     @Scheduled(cron = "\${fint.cron}")
-    suspend fun performFullSync() {
+    fun performFullSync() = runBlocking {
         println("\n :: Starting Fullsync of Plattform :: \n")
         submit(repository.fetchResources())
     }

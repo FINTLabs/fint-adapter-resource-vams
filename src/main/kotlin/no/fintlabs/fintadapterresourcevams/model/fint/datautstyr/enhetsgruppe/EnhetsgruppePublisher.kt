@@ -1,6 +1,7 @@
 package no.fintlabs.fintadapterresourcevams.model.fint.datautstyr.enhetsgruppe
 
 
+import kotlinx.coroutines.runBlocking
 import no.fintlabs.adapter.config.AdapterProperties
 import no.fintlabs.adapter.datasync.ResourcePublisher
 import no.novari.fint.model.resource.ressurs.datautstyr.EnhetsgruppeResource
@@ -14,7 +15,7 @@ abstract class EnhetsgruppePublisher(
 ) : ResourcePublisher<EnhetsgruppeResource, EnhetsgruppeRepository>(repository, props) {
 
     @Scheduled(cron = "\${fint.cron}")
-    suspend fun performFullSync() {
+    fun performFullSync() = runBlocking {
         println("\n :: Starting Fullsync of Enhetsgruppe :: \n")
         submit(repository.fetchResources())
     }

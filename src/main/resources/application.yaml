@@ -1,5 +1,5 @@
 fint:
-  cron: "0 0 1 * * *"
+  cron: "0 0 23 * * sun"
   adapter:
     username:
     password:
@@ -9,35 +9,41 @@ fint:
     org-id: fintlabs.no
     heartbeat-interval: 3
     capabilities:
-      digitalEnhet:
+      digitalenhet:
         domain-name: ressurs
         packageName: datautstyr
-        resource-name: digitalenhetresource
-        fullSyncIntervalInDays: 1
+        resource-name: digitalenhet
+        fullSyncIntervalInDays: 7
         deltaSyncInterval: IMMEDIATE
-      Enhetsgruppe:
+      enhetsgruppe:
         domain-name: ressurs
         packageName: datautstyr
         resource-name: Enhetsgruppe
-        fullSyncIntervalInDays: 1
+        fullSyncIntervalInDays: 7
+        deltaSyncInterval: IMMEDIATE
+      enhetsgruppemedlemsskap:
+        domain-name: ressurs
+        packageName: datautstyr
+        resource-name: Enhetsgruppemedlemsskap
+        fullSyncIntervalInDays: 7
         deltaSyncInterval: IMMEDIATE
       Enhetstype:
         domain-name: ressurs
-        packageName: datautstyr
+        packageName: kodeverk
         resource-name: Enhetstype
-        fullSyncIntervalInDays: 1
+        fullSyncIntervalInDays: 7
         deltaSyncInterval: IMMEDIATE
-      Status:
+      plattform:
+        domain-name: ressurs
+        packageName: kodeverk
+        resource-name: plattform
+        fullSyncIntervalInDays: 7
+        deltaSyncInterval: IMMEDIATE
+      stautus:
         domain-name: ressurs
         packageName: kodeverk
         resource-name: status
-        fullSyncIntervalInDays: 1
-        deltaSyncInterval: IMMEDIATE
-      produsent:
-        domain-name: ressurs
-        packageName: kodeverk
-        resource-name: produsent
-        fullSyncIntervalInDays: 1
+        fullSyncIntervalInDays: 7
         deltaSyncInterval: IMMEDIATE
 
 spring:

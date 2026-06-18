@@ -1,5 +1,6 @@
 package no.fintlabs.fintadapterresourcevams.model.fint.kodeverk.status
 
+import kotlinx.coroutines.runBlocking
 import no.fintlabs.adapter.config.AdapterProperties
 import no.fintlabs.adapter.datasync.ResourcePublisher
 import no.novari.fint.model.resource.ressurs.kodeverk.StatusResource
@@ -13,7 +14,7 @@ abstract class StatusPublisher(
 ): ResourcePublisher<StatusResource, StatusRepository>(repository, props) {
 
     @Scheduled(cron = "\${fint.cron}")
-    suspend fun performFullSync() {
+    fun performFullSync() = runBlocking {
         println("\n :: Starting Fullsync of DigitalEnhet :: \n")
         submit(repository.fetchResources())
     }

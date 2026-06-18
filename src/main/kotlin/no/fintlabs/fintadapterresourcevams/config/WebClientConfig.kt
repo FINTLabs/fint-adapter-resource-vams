@@ -6,17 +6,9 @@ import org.springframework.web.reactive.function.client.WebClient
 
 @Configuration
 class WebClientConfig(
-    private val providerProperties: ProviderProperties,
     private val webClientBuilder: WebClient.Builder,
     private val vamsClientProperties: VamsClientProperties
 ) {
-
-    @Bean("providerWebClient")
-    fun providerWebClient() =
-        webClientBuilder
-            .baseUrl(providerProperties.baseUrl)
-            .build()
-
     @Bean("vamsWebClient")
     fun vamsWebClient() =
         webClientBuilder

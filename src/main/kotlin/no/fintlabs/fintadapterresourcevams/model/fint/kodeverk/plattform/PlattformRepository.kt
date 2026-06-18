@@ -15,7 +15,8 @@ abstract class PlattformRepository(
 
     suspend fun fetchResources(): SyncData<PlattformResource> {
         val data = vamsClient.getRequestData<Plattform>("datautstyr/plattform/")
-        return SyncData(data.unwrap { it.toFintModel() }, SyncType.FULL)
+            .unwrap { it.toFintModel() }
+        println("fetching Plattform data from Vams, ${data.size} resources returned")
+        return SyncData(data, SyncType.FULL)
     }
-    override fun getUpdatedResources() = emptyList<PlattformResource>()
 }

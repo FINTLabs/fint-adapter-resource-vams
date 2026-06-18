@@ -15,7 +15,8 @@ abstract class DigitalEnhetRepository(
 
     suspend fun fetchResources(): SyncData<DigitalEnhetResource> {
         val data = vamsClient.getRequestData<Maskinvare>("datautstyr/maskinvare/")
-        return SyncData(data.unwrap { it.toFintModel() }, SyncType.FULL)
+            .unwrap { it.toFintModel() }
+        println("fetching DigitalEnhet from Vams, ${data.size} resources returned.")
+        return SyncData(data, SyncType.FULL)
     }
-    override fun getUpdatedResources() = emptyList<DigitalEnhetResource>()
 }

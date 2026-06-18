@@ -15,7 +15,8 @@ abstract class EnhetstypeRepository(
 
     suspend fun fetchResources(): SyncData<EnhetstypeResource> {
         val data = vamsClient.getRequestData<MaskinvareKategori>("kodeverk/maskinvarekategori/")
-        return SyncData(data.unwrap { it.toFintModel() }, SyncType.FULL)
+            .unwrap { it.toFintModel() }
+        println("fetching Enhetstype from Vams, ${data.size} resources returned.")
+        return SyncData(data, SyncType.FULL)
     }
-    override fun getUpdatedResources() = emptyList<EnhetstypeResource>()
 }

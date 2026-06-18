@@ -15,7 +15,8 @@ abstract class StatusRepository(
 
     suspend fun fetchResources(): SyncData<StatusResource> {
         val data = vamsClient.getRequestData<Status>("datautstyr/status/")
-        return SyncData(data.unwrap { it.toFintModel() }, SyncType.FULL)
+            .unwrap { it.toFintModel() }
+        println("fetching Status from Vams. ${data.size} resources returned.")
+        return SyncData(data, SyncType.FULL)
     }
-    override fun getUpdatedResources() = emptyList<StatusResource>()
 }
