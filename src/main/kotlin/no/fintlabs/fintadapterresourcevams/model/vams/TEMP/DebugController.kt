@@ -1,5 +1,6 @@
 package no.fintlabs.fintadapterresourcevams.model.vams.TEMP
 
+import kotlinx.coroutines.runBlocking
 import no.fintlabs.fintadapterresourcevams.VamsClient
 import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.kodeverk.MaskinvareKategori
 import org.springframework.scheduling.annotation.Scheduled
@@ -10,9 +11,11 @@ class DebugController(
     private val vamsClient: VamsClient
 ) {
 
-    @Scheduled(fixedRate = 15_000)
-    suspend fun getMaskinVareKategoriData() = vamsClient.getRequestData<MaskinvareKategori>(
-        "kodeverk/maskinvarekategori",
-    )
+    @Scheduled(fixedDelay = 6000)
+    fun getMaskinVareKategoriData() = runBlocking {
+            vamsClient.getRequestData<MaskinvareKategori>(
+            "kodeverk/maskinvarekategori",
+        )
+    }
 
 }

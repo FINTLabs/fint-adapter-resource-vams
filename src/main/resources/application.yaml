@@ -7,7 +7,7 @@ fint:
     base-url: https://beta.felleskomponent.no
     registration-id: fint
     org-id: fintlabs.no
-    heartbeat-interval: 3
+    heartbeat-interval-in-minutes: 3
     capabilities:
       digitalenhet:
         domain-name: ressurs
@@ -21,10 +21,10 @@ fint:
         resource-name: Enhetsgruppe
         fullSyncIntervalInDays: 7
         deltaSyncInterval: IMMEDIATE
-      enhetsgruppemedlemsskap:
+      Enhetsgruppemedlemskap:
         domain-name: ressurs
         packageName: datautstyr
-        resource-name: Enhetsgruppemedlemsskap
+        resource-name: Enhetsgruppemedlemskap
         fullSyncIntervalInDays: 7
         deltaSyncInterval: IMMEDIATE
       Enhetstype:
@@ -39,7 +39,7 @@ fint:
         resource-name: plattform
         fullSyncIntervalInDays: 7
         deltaSyncInterval: IMMEDIATE
-      stautus:
+      status:
         domain-name: ressurs
         packageName: kodeverk
         resource-name: status
