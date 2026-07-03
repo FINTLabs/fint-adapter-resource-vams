@@ -49,15 +49,4 @@ class VamsIdpClient(
         @JsonProperty("ext_expires_in") val extExpiresIn: Long,
         @JsonProperty("access_token") val accessToken: String?,
     )
-
-
-//    private fun createFormData(): MultiValueMap<String, String> =
-//        LinkedMultiValueMap<String, String>().apply {
-//            add("grant_type", "client_credentials")
-//            add("client_id", vamsProperties.clientId)
-//            add("client_secret", vamsProperties.clientSecret)
-//            add("scope", "fint-client")
-//        }
-
-
 }
