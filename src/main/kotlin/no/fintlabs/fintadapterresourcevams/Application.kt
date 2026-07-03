@@ -1,19 +1,24 @@
 package no.fintlabs.fintadapterresourcevams
 
-import no.fintlabs.fintadapterresourcevams.config.VamsClientProperties
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.runApplication
-import org.springframework.context.annotation.ComponentScan
 import org.springframework.scheduling.annotation.EnableScheduling
 
-@SpringBootApplication
-@ConfigurationPropertiesScan
-@EnableScheduling
-@ComponentScan(basePackageClasses = [
-    VamsClientProperties::class
-    ], basePackages = ["no.fintlabs.adapter"]
+@SpringBootApplication(
+    scanBasePackages = [
+        "no.fintlabs.fintadapterresourcevams",
+        "no.fintlabs.adapter"
+    ]
 )
+@ConfigurationPropertiesScan(
+    basePackages = [
+        "no.fintlabs.fintadapterresourcevams",
+        "no.fintlabs.adapter"
+    ]
+)
+
+@EnableScheduling
 class FintAdapterResourceVamsApplication
 
 fun main(args: Array<String>) {

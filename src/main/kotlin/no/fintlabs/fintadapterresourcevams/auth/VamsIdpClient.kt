@@ -9,30 +9,38 @@ import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.bodyToMono
 
 @Component
 class VamsIdpClient(
     private val vamsProperties: VamsClientProperties,
     private val idpProperties: IdpProperties,
-    @Qualifier("vamsWebClient")
-    private val webClient: WebClient
+    @Qualifier("VamsIdpWebClient")
+    private val idpWebClient: WebClient
 ) {
 
     suspend fun getBearerToken(): String {
-        val response = webClient.post()
+        val formData = BodyInserters
+            .fromFormData("grant_type", "client_credentials")
+            .also {
+                if (vamsProperties.scope.isNotBlank()) {
+                    it.with("scope", vamsProperties.scope)
+                }
+            }
+
+        val response = idpWebClient.post()
             .uri(idpProperties.vamsIdp)
+            .headers {
+                it.setBasicAuth(vamsProperties.clientId, vamsProperties.clientSecret)
+            }
             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-            .body(
-                BodyInserters.fromFormData("client_id", vamsProperties.clientId)
-                    .with("client_secret", vamsProperties.clientSecret)
-                    .with("grant_type", "client_credentials")
-                    .with("scope", vamsProperties.scope)
-            )
+            .body(formData)
             .retrieve()
-            .bodyToMono(TokenResponse::class.java)
+            .bodyToMono<TokenResponse>()
             .awaitSingle()
 
-        return response.accessToken ?: throw IllegalStateException("No token returned from Azure AD")
+        return response.accessToken
+            ?: throw IllegalStateException("No token returned from token endpoint")
     }
 
     data class TokenResponse(

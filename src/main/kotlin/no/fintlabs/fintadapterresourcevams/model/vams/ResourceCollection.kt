@@ -1,9 +1,8 @@
 package no.fintlabs.fintadapterresourcevams.model.vams
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import no.novari.fint.model.resource.FintLinks
 
-class ResourceCollection<T : FintLinks> {
+class ResourceCollection<T> {
     @JsonProperty("_embedded")
     val embedded = Embedded<T>()
 
@@ -12,7 +11,7 @@ class ResourceCollection<T : FintLinks> {
     }
 }
 
-class Embedded<T: FintLinks> {
+class Embedded<T> {
     @JsonProperty("_entries")
     val entries: List<T> = emptyList()
 }
