@@ -2,10 +2,6 @@ package no.fintlabs.fintadapterresourcevams.unit
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import no.fint.model.resource.ressurs.datautstyr.DigitalEnhetResource
-import no.fint.model.resource.ressurs.datautstyr.EnhetsgruppeResource
-import no.fint.model.resource.ressurs.kodeverk.EnhetstypeResource
-import no.fintlabs.dynamiskadapter.DynamicAdapterService
 import no.fintlabs.fintadapterresourcevams.model.vams.ResourceCollection
 import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.datautstyr.MaskinGruppering
 import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.datautstyr.Maskinvare
