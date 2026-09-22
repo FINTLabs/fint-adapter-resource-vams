@@ -8,6 +8,8 @@ spec:
   replicas: 1
   image: ghcr.io/fintlabs/fint-adapter-resource-vams:latest
   imagePullPolicy: Always
+  imagePullSecrets:
+    - ghcr
   env:
     - name: JAVA_TOOL_OPTIONS
       value: "-XX:+ExitOnOutOfMemoryError -Xmx512m"
