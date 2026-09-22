@@ -1,0 +1,40 @@
+{
+  "_embedded": {
+    "_entries": [
+      {
+        "systemId": {
+          "identifikatorverdi": "1080_13324"
+        },
+        "_links": {
+          "maskingruppering": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/datautstyr/maskingruppering/systemId/1080"
+            }
+          ],
+          "maskinvare": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/datautstyr/maskinvare/systemId/13324"
+            }
+          ]
+        }
+      },
+      {
+        "systemId": {
+          "identifikatorverdi": "1080_13410"
+        },
+        "_links": {
+          "maskingruppering": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/datautstyr/maskingruppering/systemId/1080"
+            }
+          ],
+          "maskinvare": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/datautstyr/maskinvare/systemId/13410"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

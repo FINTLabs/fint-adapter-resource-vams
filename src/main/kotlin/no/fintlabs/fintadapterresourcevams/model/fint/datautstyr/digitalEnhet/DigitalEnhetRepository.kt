@@ -1,22 +1,31 @@
 package no.fintlabs.fintadapterresourcevams.model.fint.datautstyr.digitalEnhet
 
+import kotlinx.coroutines.runBlocking
 import no.fintlabs.adapter.datasync.ResourceRepository
-import no.fintlabs.adapter.datasync.SyncData
-import no.fintlabs.adapter.models.sync.SyncType
 import no.fintlabs.fintadapterresourcevams.VamsClient
 import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.datautstyr.Maskinvare
 import no.novari.fint.model.resource.ressurs.datautstyr.DigitalEnhetResource
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Repository
 
 @Repository
-abstract class DigitalEnhetRepository(
-    private val vamsClient: VamsClient
-): ResourceRepository<DigitalEnhetResource> {
+class DigitalEnhetRepository(
+    private val vamsClient: VamsClient,
+) : ResourceRepository<DigitalEnhetResource> {
+    override fun getResources(): List<DigitalEnhetResource> =
+        runBlocking {
+            val data =
+                vamsClient
+                    .getRequestData("datautstyr/maskinvare/", Maskinvare::class.java)
+                    .unwrap { it.toFintModel() }
+                    .filterNotNull()
+            log.info("Fetching DigitalEnhet from Vams, {} resources returned.", data.size)
+            data
+        }
 
-    suspend fun fetchResources(): SyncData<DigitalEnhetResource> {
-        val data = vamsClient.getRequestData<Maskinvare>("datautstyr/maskinvare/")
-            .unwrap { it.toFintModel() }
-        println("fetching DigitalEnhet from Vams, ${data.size} resources returned.")
-        return SyncData(data, SyncType.FULL)
+    override fun getUpdatedResources(): List<DigitalEnhetResource> = emptyList()
+
+    companion object {
+        private val log = LoggerFactory.getLogger(DigitalEnhetRepository::class.java)
     }
 }

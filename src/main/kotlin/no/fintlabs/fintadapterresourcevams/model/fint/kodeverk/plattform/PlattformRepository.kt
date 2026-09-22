@@ -1,22 +1,31 @@
 package no.fintlabs.fintadapterresourcevams.model.fint.kodeverk.plattform
 
+import kotlinx.coroutines.runBlocking
 import no.fintlabs.adapter.datasync.ResourceRepository
-import no.fintlabs.adapter.datasync.SyncData
-import no.fintlabs.adapter.models.sync.SyncType
 import no.fintlabs.fintadapterresourcevams.VamsClient
 import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.kodeverk.Plattform
 import no.novari.fint.model.resource.ressurs.kodeverk.PlattformResource
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Repository
 
 @Repository
-abstract class PlattformRepository(
-    private val vamsClient: VamsClient
-): ResourceRepository<PlattformResource> {
+class PlattformRepository(
+    private val vamsClient: VamsClient,
+) : ResourceRepository<PlattformResource> {
+    override fun getResources(): List<PlattformResource> =
+        runBlocking {
+            val data =
+                vamsClient
+                    .getRequestData("kodeverk/plattform/", Plattform::class.java)
+                    .unwrap { it.toFintModel() }
+                    .filterNotNull()
+            log.info("Fetching Plattform from Vams, {} resources returned.", data.size)
+            data
+        }
 
-    suspend fun fetchResources(): SyncData<PlattformResource> {
-        val data = vamsClient.getRequestData<Plattform>("datautstyr/plattform/")
-            .unwrap { it.toFintModel() }
-        println("fetching Plattform data from Vams, ${data.size} resources returned")
-        return SyncData(data, SyncType.FULL)
+    override fun getUpdatedResources(): List<PlattformResource> = emptyList()
+
+    companion object {
+        private val log = LoggerFactory.getLogger(PlattformRepository::class.java)
     }
 }

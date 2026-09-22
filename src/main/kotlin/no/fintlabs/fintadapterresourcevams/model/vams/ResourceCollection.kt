@@ -6,9 +6,7 @@ class ResourceCollection<T> {
     @JsonProperty("_embedded")
     val embedded = Embedded<T>()
 
-    fun <R> unwrap(mapper: (T) -> R): List<R> {
-        return embedded.entries.map(mapper)
-    }
+    fun <R> unwrap(mapper: (T) -> R): List<R> = embedded.entries.map(mapper)
 }
 
 class Embedded<T> {

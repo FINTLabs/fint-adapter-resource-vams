@@ -8,16 +8,15 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @SpringBootApplication(
     scanBasePackages = [
         "no.fintlabs.fintadapterresourcevams",
-        "no.fintlabs.adapter"
-    ]
+        "no.fintlabs.adapter",
+    ],
 )
 @ConfigurationPropertiesScan(
     basePackages = [
         "no.fintlabs.fintadapterresourcevams",
-        "no.fintlabs.adapter"
-    ]
+        "no.fintlabs.adapter",
+    ],
 )
-
 @EnableScheduling
 class FintAdapterResourceVamsApplication
 

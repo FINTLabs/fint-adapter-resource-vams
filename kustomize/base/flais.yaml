@@ -1,0 +1,36 @@
+apiVersion: fintlabs.no/v1alpha1
+kind: Application
+metadata:
+  name: fint-adapter-resource-vams
+  namespace: fintlabs-no
+spec:
+  orgId: fintlabs.no
+  replicas: 1
+  image: ghcr.io/fintlabs/fint-adapter-resource-vams:latest
+  imagePullPolicy: Always
+  env:
+    - name: JAVA_TOOL_OPTIONS
+      value: "-XX:+ExitOnOutOfMemoryError -Xmx512m"
+    - name: management.endpoints.web.base-path
+      value: "/actuator"
+    - name: management.endpoints.web.exposure.include
+      value: "prometheus,health,info"
+    - name: management.endpoint.prometheus.enabled
+      value: "true"
+  envFrom:
+    - configMapRef:
+        name: fint-adapter-resource-vams
+    - secretRef:
+        name: fint-adapter-resource-vams
+  observability:
+    metrics:
+      enabled: true
+      port: "8080"
+      path: "/actuator/prometheus"
+  resources:
+    limits:
+      memory: "768Mi"
+      cpu: "500m"
+    requests:
+      memory: "384Mi"
+      cpu: "100m"

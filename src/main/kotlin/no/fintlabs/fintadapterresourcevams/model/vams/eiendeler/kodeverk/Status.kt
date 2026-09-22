@@ -1,33 +1,43 @@
 package no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.kodeverk
 
 import no.novari.fint.model.felles.kompleksedatatyper.Identifikator
-import no.novari.fint.model.felles.kompleksedatatyper.Periode
 import no.novari.fint.model.resource.FintLinks
 import no.novari.fint.model.resource.Link
 import no.novari.fint.model.resource.ressurs.kodeverk.StatusResource
+import org.slf4j.LoggerFactory
 
 data class Status(
-    val gyldighetsperiode: Periode? = null,
-    val systemId: Identifikator = Identifikator(),
-    val kode: Identifikator = Identifikator(),
-    val passiv: Boolean? = null,
-    val navn: String?,
-): FintLinks {
-    val _links = this.createLinks()
-    override fun getLinks(): Map<String, List<Link>> = _links
+    val systemId: Identifikator? = null,
+    val kode: String? = null,
+    val navn: String? = null,
+) : FintLinks {
+    private val linkMap = createLinks()
 
-    fun toFintModel(): StatusResource {
-        val periode = gyldighetsperiode
-        val fintKode = kode.identifikatorverdi.toString()
-        val fintName = navn
-        val passivStatus = passiv
-        val id = systemId
-        return StatusResource().apply {
-            gyldighetsperiode = periode
-            systemId = id
-            kode = fintKode
-            passiv = passivStatus
-            navn = fintName
+    override fun getLinks(): Map<String, List<Link>> = linkMap
+
+    fun toFintModel(): StatusResource? {
+        val validSystemId = systemId?.takeIf { !it.identifikatorverdi.isNullOrBlank() }
+        val validKode = kode?.takeIf { it.isNotBlank() }
+        val validName = navn?.takeIf { it.isNotBlank() }
+
+        if (validSystemId == null || validKode == null || validName == null) {
+            log.warn(
+                "Skipping invalid Status from VAMS: systemId={}, kode={}, navn={}",
+                systemId?.identifikatorverdi,
+                kode,
+                navn,
+            )
+            return null
         }
+
+        return StatusResource().apply {
+            systemId = validSystemId
+            kode = validKode
+            navn = validName
+        }
+    }
+
+    companion object {
+        private val log = LoggerFactory.getLogger(Status::class.java)
     }
 }

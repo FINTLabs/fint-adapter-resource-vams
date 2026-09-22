@@ -1,22 +1,41 @@
 {
-  "_embedded": {
-    "_entries": [
-      {
-        "kode": {
-          "identifikatorverdi": "123"
-        },
-        "navn": "PC",
-        "systemId": {
-          "identifikatorverdi": 123
-        },
-        "_links": {
-          "self": [
-            {
-              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/maskinvarekategori/systemId/123"
-            }
-          ]
-        }
-      }
-    ]
-  }
+	"_embedded": {
+		"_entries": [
+			{
+				"kode": "1",
+				"navn": "PC",
+				"systemId": {
+					"identifikatorverdi": 5
+				}
+			},
+			{
+				"kode": "2",
+				"navn": "Nettbrett",
+				"systemId": {
+					"identifikatorverdi": 86
+				}
+			},
+			{
+				"kode": "3",
+				"navn": "Telefon",
+				"systemId": {
+					"identifikatorverdi": 87
+				}
+			},
+			{
+				"kode": "4",
+				"navn": "PC Skjerm",
+				"systemId": {
+					"identifikatorverdi": 1074
+				}
+			},
+			{
+				"kode": "5",
+				"navn": "Tynnklient",
+				"systemId": {
+					"identifikatorverdi": 1075
+				}
+			}
+		]
+	}
 }

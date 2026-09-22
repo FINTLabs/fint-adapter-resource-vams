@@ -1,0 +1,27 @@
+{
+  "_embedded": {
+    "_entries": [
+      {
+        "kode": "IOS",
+        "navn": "iOS",
+        "systemId": {
+          "identifikatorverdi": 1380
+        }
+      },
+      {
+        "kode": "MAC",
+        "navn": "macOS",
+        "systemId": {
+          "identifikatorverdi": 1546
+        }
+      },
+      {
+        "kode": "WIN",
+        "navn": "Windows",
+        "systemId": {
+          "identifikatorverdi": 1000
+        }
+      }
+    ]
+  }
+}

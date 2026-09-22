@@ -1,0 +1,20 @@
+{
+  "_embedded": {
+    "_entries": [
+      {
+        "kode": "HARDWARE_STATUS",
+        "navn": "I bruk",
+        "systemId": {
+          "identifikatorverdi": 9
+        }
+      },
+      {
+        "kode": "HARDWARE_STATUS",
+        "navn": "Pa lager",
+        "systemId": {
+          "identifikatorverdi": 10
+        }
+      }
+    ]
+  }
+}

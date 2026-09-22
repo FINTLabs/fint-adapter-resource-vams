@@ -1,9 +1,10 @@
 fint:
-  cron: "0 0 23 * * sun"
+  full-sync:
+    cron: "0 30 10 * * *"
   adapter:
     username:
     password:
-    id: https://fintlabs.no/ressurs
+    id: https://fintlabs.no/ressurs/vams
     base-url: https://beta.felleskomponent.no
     registration-id: fint
     org-id: fintlabs.no
@@ -13,46 +14,45 @@ fint:
         domain-name: ressurs
         packageName: datautstyr
         resource-name: digitalenhet
-        fullSyncIntervalInDays: 7
+        fullSyncIntervalInDays: 1
         deltaSyncInterval: IMMEDIATE
       enhetsgruppe:
         domain-name: ressurs
         packageName: datautstyr
-        resource-name: Enhetsgruppe
-        fullSyncIntervalInDays: 7
+        resource-name: enhetsgruppe
+        fullSyncIntervalInDays: 1
         deltaSyncInterval: IMMEDIATE
-      Enhetsgruppemedlemskap:
+      enhetsgruppemedlemskap:
         domain-name: ressurs
         packageName: datautstyr
-        resource-name: Enhetsgruppemedlemskap
-        fullSyncIntervalInDays: 7
+        resource-name: enhetsgruppemedlemskap
+        fullSyncIntervalInDays: 1
         deltaSyncInterval: IMMEDIATE
-      Enhetstype:
+      enhetstype:
         domain-name: ressurs
         packageName: kodeverk
-        resource-name: Enhetstype
-        fullSyncIntervalInDays: 7
+        resource-name: enhetstype
+        fullSyncIntervalInDays: 1
         deltaSyncInterval: IMMEDIATE
       plattform:
         domain-name: ressurs
         packageName: kodeverk
         resource-name: plattform
-        fullSyncIntervalInDays: 7
+        fullSyncIntervalInDays: 1
         deltaSyncInterval: IMMEDIATE
       status:
         domain-name: ressurs
         packageName: kodeverk
         resource-name: status
-        fullSyncIntervalInDays: 7
+        fullSyncIntervalInDays: 1
         deltaSyncInterval: IMMEDIATE
-
 spring:
   security:
     oauth2:
       client:
         provider:
           fint-idp:
-            token-uri: https://idp.felleskomponent.no/nidp/oauth/nam/token?resourceServer=fint-api
+            token-uri: https://idp.felleskomponent.no/nidp/oauth/nam/token
         registration:
           fint:
             authorization-grant-type: password
@@ -60,3 +60,8 @@ spring:
             client-secret: ${fint.adapter.client-secret}
             provider: fint-idp
             scope: fint-adapter
+vams:
+  client:
+    county-code: OFK
+    base-url: "https://vamsws.viken.no/ords/vams/expws/eiendeler/"
+    grant-type: client_credentials

@@ -1,0 +1,50 @@
+{
+  "_embedded": {
+    "_entries": [
+      {
+        "navn": "VGMALA_Biliotek",
+        "systemId": {
+          "identifikatorverdi": 1543
+        },
+        "_links": {
+          "virksomhet": [
+            {
+              "href": "https://api.felleskomponent.no/administrasjon/organisasjon/organisasjonselement/organisasjonskode/F40.44.12"
+            }
+          ]
+        }
+      },
+      {
+        "navn": "VGMALA_Skaperverksted",
+        "systemId": {
+          "identifikatorverdi": 1540
+        },
+        "_links": {
+          "virksomhet": [
+            {
+              "href": "https://api.felleskomponent.no/administrasjon/organisasjon/organisasjonselement/organisasjonskode/F40.44.12"
+            }
+          ]
+        }
+      },
+      {
+        "navn": "VGGLEM_DEM",
+        "systemId": {
+          "identifikatorverdi": 1080
+        },
+        "_links": {
+          "virksomhet": [
+            {
+              "href": "https://api.felleskomponent.no/administrasjon/organisasjon/organisasjonselement/organisasjonskode/F40.44.13"
+            }
+          ],
+          "plattform": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/plattform/systemId/1000"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
