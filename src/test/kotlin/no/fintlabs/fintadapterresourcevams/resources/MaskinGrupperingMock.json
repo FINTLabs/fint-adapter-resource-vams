@@ -16,7 +16,16 @@
               "href": "https://api.felleskomponent.no/administrasjon/organisasjon/organisasjonselement/organisasjonskode/123"
             }
           ],
-          "plattform": [],
+          "maskinvarekategori": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/maskinvarekategori/systemId/1"
+            }
+          ],
+          "plattform": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/plattform/systemId/1000"
+            }
+          ],
           "maskinvare": null,
           "self": [
             {

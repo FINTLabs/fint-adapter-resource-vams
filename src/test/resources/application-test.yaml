@@ -1,0 +1,21 @@
+fint:
+  adapter:
+    client-id: test-client-id
+    client-secret: test-client-secret
+    username: test-username
+    password: test-password
+
+idp:
+  url:
+    vams-idp: https://example.invalid/token
+
+vams:
+  client:
+    api-token: test-api-token
+    base-url: https://example.invalid/vams/
+    client-id: test-client-id
+    client-secret: test-client-secret
+    county-code: TEST
+    grant-type: client_credentials
+    open-id-secret: test-open-id-secret
+    scope: test-scope

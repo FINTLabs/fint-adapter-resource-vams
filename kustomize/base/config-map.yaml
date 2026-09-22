@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fint-adapter-resource-vams
+data:
+  fint.full-sync.cron: "0 15 2 * * *"
+  fint.adapter.base-url: "https://beta.felleskomponent.no"
+  fint.adapter.id: "https://fintlabs.no/ressurs/vams"
+  fint.adapter.org-id: "fintlabs.no"
+  fint.adapter.registration-id: "fint"
+  fint.adapter.heartbeat-interval-in-minutes: "3"
+  idp.url.vams-idp: "https://login.microsoftonline.com/XXX/oauth2/v2.0/token"
+  vams.client.base-url: "https://vamsws.viken.no/ords/vams/expws/eiendeler/"
+  vams.client.county-code: "OFK"
+  vams.client.grant-type: "client_credentials"
+  vams.client.scope: "api://XXXXXX/.default"

@@ -2,41 +2,61 @@
   "_embedded": {
     "_entries": [
       {
-        "serienummer": {
-          "identifikatorverdi": "serienummeret"
+        "dataobjektId": {
+          "identifikatorverdi": "3d4abd58-84b6-46a6-9d45-dae7861116e7"
         },
+        "navn": "OPCPF17SPGD",
+        "serienummer": "PF17SPGD",
         "systemId": {
-          "identifikatorverdi": 123456
-        },
-        "navn": {
-          "produsent": "LENOVO",
-          "modell": "THINKPAD L480",
-          "modellspesifikasjon": "i5/16GB/256SSD"
-        },
-        "timestamp": {
-          "opprettet": "2025-11-11T10:10:10",
-          "oppdatert": "2025-11-11T20:20:20"
+          "identifikatorverdi": 13324
         },
         "_links": {
           "virksomhet": [
             {
-              "href": "https://api.felleskomponent.no/administrasjon/organisasjon/organisasjonselement/organisasjonskode/blablabla"
+              "href": "https://api.felleskomponent.no/administrasjon/organisasjon/organisasjonselement/organisasjonskode/F40.44.13"
             }
           ],
-          "plattform": [],
-          "enhetstype": [
+          "plattform": [
             {
-              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/maskinvarekategori/systemId/123"
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/plattform/systemId/1000"
             }
           ],
-          "maskingruppering": [
+          "maskinvarekategori": [
             {
-              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/datautstyr/maskingruppering/systemId/123"
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/maskinvarekategori/systemId/1"
             }
           ],
-          "self": [
+          "status": [
             {
-              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/datautstyr/maskinvare/systemId/123"
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/status/systemId/9"
+            }
+          ]
+        }
+      },
+      {
+        "serienummer": "PF1NDX0X",
+        "systemId": {
+          "identifikatorverdi": 13410
+        },
+        "_links": {
+          "virksomhet": [
+            {
+              "href": "https://api.felleskomponent.no/administrasjon/organisasjon/organisasjonselement/organisasjonskode/F40.44.13"
+            }
+          ],
+          "plattform": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/plattform/systemId/"
+            }
+          ],
+          "maskinvarekategori": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/maskinvarekategori/systemId/1"
+            }
+          ],
+          "status": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/status/systemId/10"
             }
           ]
         }

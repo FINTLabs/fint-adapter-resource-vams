@@ -1,0 +1,11 @@
+apiVersion: fintlabs.no/v1alpha1
+kind: FintAdapter
+metadata:
+  name: resource-vams-adapter
+  namespace: fintlabs-no
+spec:
+  orgId: fintlabs.no
+  note: Sender ressursdata fra VAMS til FINT
+  components:
+    - ressurs_datautstyr
+    - ressurs_kodeverk

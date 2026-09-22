@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+labels:
+  - includeSelectors: true
+    pairs:
+      app.kubernetes.io/name: fint-adapter-resource-vams
+      app.kubernetes.io/instance: fint-adapter-resource-vams_fintlabs_no
+      app.kubernetes.io/version: latest
+      app.kubernetes.io/component: adapter
+      app.kubernetes.io/part-of: fint-kontroll
+      fintlabs.no/team: kontroll
+resources:
+  - config-map.yaml
+  - fint-adapter.yaml
+  - flais.yaml
+  - onePassword.yaml

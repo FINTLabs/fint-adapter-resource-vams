@@ -1,21 +1,17 @@
 package no.fintlabs.fintadapterresourcevams.model.fint.datautstyr.digitalEnhet
 
-import kotlinx.coroutines.runBlocking
 import no.fintlabs.adapter.config.AdapterProperties
-import no.fintlabs.adapter.datasync.ResourcePublisher
+import no.fintlabs.fintadapterresourcevams.model.fint.VamsResourcePublisher
 import no.novari.fint.model.resource.ressurs.datautstyr.DigitalEnhetResource
-import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 
 @Service
-abstract class DigitalEnhetPublisher(
-    private val repository: DigitalEnhetRepository,
-    props: AdapterProperties
-) : ResourcePublisher<DigitalEnhetResource, DigitalEnhetRepository>(repository, props) {
-
-    @Scheduled(cron = "\${fint.cron}")
-    fun performFullSync() = runBlocking {
-        println("\n :: Starting Fullsync of DigitalEnhet :: \n")
-        submit(repository.fetchResources())
-    }
-}
+class DigitalEnhetPublisher(
+    repository: DigitalEnhetRepository,
+    props: AdapterProperties,
+) : VamsResourcePublisher<DigitalEnhetResource>(
+        repository,
+        props,
+        "digitalenhet",
+        "DigitalEnhet",
+    )
