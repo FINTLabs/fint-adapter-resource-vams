@@ -25,7 +25,7 @@ patches:
         value: "https://beta.felleskomponent.no"
       - op: replace
         path: "/data/fint.adapter.id"
-        value: "https://fintlabs.no/ressurs"
+        value: "https://fintlabs.no/ressurs/vams"
       - op: replace
         path: "/data/fint.adapter.org-id"
         value: "fintlabs.no"
