@@ -6,8 +6,8 @@ resources:
 labels:
   - includeSelectors: true
     pairs:
-      app.kubernetes.io/instance: fint-adapter-resource-vams_ofk-no
-      fintlabs.no/org-id: ofk.no
+      app.kubernetes.io/instance: fint-adapter-resource-vams_fintlabs-no
+      fintlabs.no/org-id: fintlabs.no
 patches:
   - target:
       kind: Application

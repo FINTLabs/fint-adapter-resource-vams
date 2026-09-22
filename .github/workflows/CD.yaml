@@ -16,8 +16,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  JAVA-VERSION: "25"
-  JAVA-DISTRIBUTION: "zulu"
 
 jobs:
   build-and-push:
