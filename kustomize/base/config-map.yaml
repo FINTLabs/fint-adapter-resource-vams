@@ -3,7 +3,8 @@ kind: ConfigMap
 metadata:
   name: fint-adapter-resource-vams
 data:
-  fint.full-sync.cron: "0 15 2 * * *"
+  fint.full-sync.initial-delay: "120000"
+  fint.full-sync.fixed-delay: "86400000"
   fint.adapter.base-url: "https://beta.felleskomponent.no"
   fint.adapter.id: "https://fintlabs.no/ressurs/vams"
   fint.adapter.org-id: "fintlabs.no"
