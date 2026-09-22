@@ -10,8 +10,6 @@ import no.fintlabs.adapter.models.sync.SyncType
 import no.novari.fint.model.resource.FintLinks
 import org.slf4j.LoggerFactory
 
-const val VAMS_FULL_SYNC_CRON = "\${fint.full-sync.cron}"
-
 abstract class VamsResourcePublisher<T : FintLinks>(
     repository: ResourceRepository<T>,
     props: AdapterProperties,

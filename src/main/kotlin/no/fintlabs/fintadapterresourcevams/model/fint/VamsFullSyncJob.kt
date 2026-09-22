@@ -30,7 +30,10 @@ class VamsFullSyncJob(
             enhetsgruppeMedlemskapPublisher,
         )
 
-    @Scheduled(cron = VAMS_FULL_SYNC_CRON)
+    @Scheduled(
+        initialDelayString = "\${fint.full-sync.initial-delay}",
+        fixedDelayString = "\${fint.full-sync.fixed-delay}",
+    )
     fun performFullSync() {
         log.info("Starting scheduled VAMS full sync for {} resources", publishers.size)
 

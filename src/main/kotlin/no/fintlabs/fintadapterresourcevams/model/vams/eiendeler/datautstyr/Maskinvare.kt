@@ -1,6 +1,5 @@
 package no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.datautstyr
 
-import no.fintlabs.fintadapterresourcevams.model.vams.getIdentifikatorLinkOrNull
 import no.fintlabs.fintadapterresourcevams.model.vams.getNonBlankLinkOrNull
 import no.fintlabs.fintadapterresourcevams.model.vams.getSystemIdLinkOrNull
 import no.novari.fint.model.felles.kompleksedatatyper.Identifikator
@@ -24,13 +23,12 @@ data class Maskinvare(
 
     fun toFintModel(): DigitalEnhetResource? {
         val validSystemId = systemId?.takeIf { !it.identifikatorverdi.isNullOrBlank() }
-        val validSerienummer = serienummer?.takeIf { it.isNotBlank() }
         val administrator = links.getNonBlankLinkOrNull("virksomhet")
-        val enhetstype = links.getIdentifikatorLinkOrNull("maskinvarekategori", EnhetstypeResource::class.java, "kode")
-        val plattform = links.getSystemIdLinkOrNull("plattform", PlattformResource::class.java)
+        val enhetstype = Link.with(EnhetstypeResource::class.java, "systemid", TEST_ENHETSTYPE_SYSTEM_ID)
+        val plattform = Link.with(PlattformResource::class.java, "systemid", TEST_PLATTFORM_SYSTEM_ID)
         val status = links.getSystemIdLinkOrNull("status", StatusResource::class.java)
 
-        if (validSystemId == null || validSerienummer == null || administrator == null || enhetstype == null || plattform == null) {
+        if (validSystemId == null || administrator == null) {
             log.warn(
                 "Skipping invalid Maskinvare from VAMS: systemId={}, serienummer={}",
                 systemId?.identifikatorverdi,
@@ -42,7 +40,7 @@ data class Maskinvare(
         return DigitalEnhetResource().apply {
             dataobjektId = this@Maskinvare.dataobjektId
             navn = this@Maskinvare.navn
-            serienummer = validSerienummer
+            serienummer = TEST_SERIENUMMER
             systemId = validSystemId
             addAdministrator(administrator)
             addEnhetstype(enhetstype)
@@ -52,6 +50,9 @@ data class Maskinvare(
     }
 
     companion object {
+        private const val TEST_ENHETSTYPE_SYSTEM_ID = "87"
+        private const val TEST_PLATTFORM_SYSTEM_ID = "1380"
+        private const val TEST_SERIENUMMER = "TEST-SERIENUMMER"
         private val log = LoggerFactory.getLogger(Maskinvare::class.java)
     }
 }

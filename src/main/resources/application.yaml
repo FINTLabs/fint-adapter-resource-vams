@@ -1,6 +1,7 @@
 fint:
   full-sync:
-    cron: "0 30 10 * * *"
+    initial-delay: 120000
+    fixed-delay: 86400000
   adapter:
     username:
     password:
