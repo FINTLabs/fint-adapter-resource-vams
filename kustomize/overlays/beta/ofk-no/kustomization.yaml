@@ -15,7 +15,7 @@ patches:
     patch: |-
       - op: replace
         path: "/spec/orgId"
-        value: "fintlabs.no"
+        value: "ofk.no"
   - target:
       kind: ConfigMap
       name: fint-adapter-resource-vams
