@@ -16,6 +16,7 @@ on:
         type: choice
         options:
           - fintlabs-no
+          - ofk-no
 
 env:
   REGISTRY: ghcr.io
