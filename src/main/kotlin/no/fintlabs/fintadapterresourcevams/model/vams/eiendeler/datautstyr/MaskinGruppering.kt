@@ -25,7 +25,7 @@ data class MaskinGruppering(
         val validSystemId = systemId?.takeIf { !it.identifikatorverdi.isNullOrBlank() }
         val validName = navn?.takeIf { it.isNotBlank() }
         val org = links.getNonBlankLinkOrNull("virksomhet")
-        val enhetstype = links.getIdentifikatorLinkOrNull("maskinvarekategori", EnhetstypeResource::class.java, "kode")
+        val enhetstype = links.getSystemIdLinkOrNull("maskinkategori", EnhetstypeResource::class.java)
         val plattform = links.getSystemIdLinkOrNull("plattform", PlattformResource::class.java)
 
         if (validSystemId == null || validName == null || org == null || enhetstype == null || plattform == null) {
