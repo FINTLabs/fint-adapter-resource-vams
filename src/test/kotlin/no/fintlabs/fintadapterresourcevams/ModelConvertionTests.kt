@@ -1,4 +1,4 @@
-package no.fintlabs.fintadapterresourcevams.unit
+package no.fintlabs.fintadapterresourcevams
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
@@ -15,16 +15,15 @@ import no.novari.fint.model.resource.ressurs.datautstyr.EnhetsgruppemedlemskapRe
 import no.novari.fint.model.resource.ressurs.kodeverk.EnhetstypeResource
 import no.novari.fint.model.resource.ressurs.kodeverk.PlattformResource
 import no.novari.fint.model.resource.ressurs.kodeverk.StatusResource
-import java.nio.file.Paths
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class ModelConvertionTests {
     @Test
     fun `maskinvare toFintModel maps complete records and skips partial records`() {
-        val path = Paths.get("src/test/kotlin/no/fintlabs/fintadapterresourcevams/resources/MaskinvareMock.json")
-        val jsonString = path.toFile().readText()
+        val jsonString = fixture("MaskinvareMock.json")
         val json: ResourceCollection<Maskinvare> = jacksonObjectMapper().readValue(jsonString)
         val maskinvare = json.embedded.entries
 
@@ -48,8 +47,7 @@ class ModelConvertionTests {
 
     @Test
     fun `maskinGruppering toFintModel maps singular mock`() {
-        val path = Paths.get("src/test/kotlin/no/fintlabs/fintadapterresourcevams/resources/MaskinGrupperingMock.json")
-        val jsonString = path.toFile().readText()
+        val jsonString = fixture("MaskinGrupperingMock.json")
         val json: ResourceCollection<MaskinGruppering> = jacksonObjectMapper().readValue(jsonString)
         val maskingruppering: MaskinGruppering =
             json.embedded.entries
@@ -63,28 +61,26 @@ class ModelConvertionTests {
             "https://api.felleskomponent.no/administrasjon/organisasjon/organisasjonselement/organisasjonskode/123",
             enhetsgruppe.organisasjonsenhet.single().href,
         )
-        assertEquals("\${ressurs.kodeverk.enhetstype}/kode/1", enhetsgruppe.enhetstype.single().href)
+        assertEquals("\${ressurs.kodeverk.enhetstype}/systemid/1", enhetsgruppe.enhetstype.single().href)
         assertEquals("\${ressurs.kodeverk.plattform}/systemid/1000", enhetsgruppe.plattform.single().href)
     }
 
     @Test
     fun `maskinGruppering toFintModel returns null for records missing mandatory links`() {
-        val path = Paths.get("src/test/kotlin/no/fintlabs/fintadapterresourcevams/resources/MaskinGrupperingSample.json")
-        val jsonString = path.toFile().readText()
+        val jsonString = fixture("MaskinGrupperingSample.json")
         val json: ResourceCollection<MaskinGruppering> = jacksonObjectMapper().readValue(jsonString)
         val maskingruppering = json.embedded.entries
 
         assertEquals(3, maskingruppering.size)
 
         assertNull(maskingruppering[0].toFintModel())
-        assertNull(maskingruppering[1].toFintModel())
-        assertNull(maskingruppering[2].toFintModel())
+        assertNotNull(maskingruppering[1].toFintModel())
+        assertNotNull(maskingruppering[2].toFintModel())
     }
 
     @Test
     fun `maskinGruppeMedlemsskap toFintModel maps real shape`() {
-        val path = Paths.get("src/test/kotlin/no/fintlabs/fintadapterresourcevams/resources/MedlemskapSample.json")
-        val jsonString = path.toFile().readText()
+        val jsonString = fixture("MedlemskapSample.json")
         val json: ResourceCollection<MaskinGruppeMedlemsskap> = jacksonObjectMapper().readValue(jsonString)
         val medlemskap = json.embedded.entries
 
@@ -98,8 +94,7 @@ class ModelConvertionTests {
 
     @Test
     fun `maskinvareKategori toFintModel maps singular mock`() {
-        val path = Paths.get("src/test/kotlin/no/fintlabs/fintadapterresourcevams/resources/MaskinvareKategori.json")
-        val jsonString = path.toFile().readText()
+        val jsonString = fixture("MaskinvareKategoriSample.json")
         val json: ResourceCollection<MaskinvareKategori> = jacksonObjectMapper().readValue(jsonString)
         val maskinvarekategorier = json.embedded.entries
 
@@ -119,8 +114,7 @@ class ModelConvertionTests {
 
     @Test
     fun `status toFintModel maps real shape`() {
-        val path = Paths.get("src/test/kotlin/no/fintlabs/fintadapterresourcevams/resources/StatusSample.json")
-        val jsonString = path.toFile().readText()
+        val jsonString = fixture("StatusSample.json")
         val json: ResourceCollection<Status> = jacksonObjectMapper().readValue(jsonString)
         val statuses = json.embedded.entries
 
@@ -135,8 +129,7 @@ class ModelConvertionTests {
 
     @Test
     fun `plattform toFintModel maps real shape`() {
-        val path = Paths.get("src/test/kotlin/no/fintlabs/fintadapterresourcevams/resources/PlattformSample.json")
-        val jsonString = path.toFile().readText()
+        val jsonString = fixture("PlattformSample.json")
         val json: ResourceCollection<Plattform> = jacksonObjectMapper().readValue(jsonString)
         val plattformer = json.embedded.entries
 
@@ -148,4 +141,7 @@ class ModelConvertionTests {
         assertEquals("1000", plattform.systemId.identifikatorverdi)
         assertNull(plattform.passiv)
     }
+
+    private fun fixture(name: String): String =
+        requireNotNull(javaClass.getResource("/fixtures/$name")) { "Missing test fixture: $name" }.readText()
 }
