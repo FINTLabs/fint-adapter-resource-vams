@@ -9,20 +9,33 @@ import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.kodeverk.Maskinv
 import no.novari.fint.model.resource.ressurs.datautstyr.DigitalEnhetResource
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Repository
+import tools.jackson.databind.json.JsonMapper
 
 @Repository
 class DigitalEnhetRepository(
     private val vamsClient: VamsClient,
     private val enhetstypeRepository: EnhetstypeRepository,
 ) : ResourceRepository<DigitalEnhetResource> {
+    private val objectMapper = JsonMapper.builder().build()
+
     override fun getResources(): List<DigitalEnhetResource> =
         runBlocking {
-            val categoryReferences = MaskinvareKategoriReferences(enhetstypeRepository.getCategories())
-            val data =
+            val categories = enhetstypeRepository.getCategories()
+            log.info("Loaded {} MaskinvareKategori references for DigitalEnhet", categories.size)
+            val categoryReferences = MaskinvareKategoriReferences(categories)
+            val converted =
                 vamsClient
                     .getRequestData("datautstyr/maskinvare/", Maskinvare::class.java)
-                    .unwrap { it.toFintModel(categoryReferences) }
-                    .filterNotNull()
+                    .unwrap { maskinvare ->
+                        val systemId = maskinvare.systemId?.identifikatorverdi
+                        log.info("VAMS Maskinvare input systemId={} json={}", systemId, objectMapper.writeValueAsString(maskinvare))
+                        maskinvare.toFintModel(categoryReferences).also { resource ->
+                            if (resource == null) {
+                                log.warn("VAMS Maskinvare conversion skipped systemId={}", systemId)
+                            }
+                        }
+                    }
+            val data = converted.filterNotNull()
             log.info("Fetching DigitalEnhet from Vams, {} resources returned.", data.size)
             data
         }

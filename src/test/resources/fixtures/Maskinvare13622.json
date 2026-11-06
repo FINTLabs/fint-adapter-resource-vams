@@ -1,0 +1,38 @@
+{
+  "_embedded": {
+    "_entries": [
+      {
+        "dataobjektId": {
+          "identifikatorverdi": "0bd4aa30-3b5c-4560-a496-813bde6919a7"
+        },
+        "navn": "OPCPF1NG845",
+        "serienummer": "PF1NG845",
+        "systemId": {
+          "identifikatorverdi": 13622
+        },
+        "_links": {
+          "virksomhet": [
+            {
+              "href": "https://api.felleskomponent.no/administrasjon/organisasjon/organisasjonselement/organisasjonskode/F40.44.13"
+            }
+          ],
+          "plattform": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/plattform/systemId/1000"
+            }
+          ],
+          "maskinvarekategori": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/maskinvarekategori/systemId/1"
+            }
+          ],
+          "status": [
+            {
+              "href": "https://vamsws.viken.no/ords/vams/expws/eiendeler/kodeverk/status/systemId/9"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

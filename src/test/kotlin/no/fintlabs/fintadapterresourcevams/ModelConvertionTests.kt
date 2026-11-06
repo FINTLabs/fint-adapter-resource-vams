@@ -25,6 +25,30 @@ import kotlin.test.assertNull
 
 class ModelConvertionTests {
     @Test
+    fun `VAMS hardware 13622 sends PC enhetstype by system ID`() {
+        val mapper = JsonMapper.builder().build()
+        val categoryType = mapper.typeFactory.constructParametricType(ResourceCollection::class.java, MaskinvareKategori::class.java)
+        val hardwareType = mapper.typeFactory.constructParametricType(ResourceCollection::class.java, Maskinvare::class.java)
+        val categories: ResourceCollection<MaskinvareKategori> = mapper.readValue(fixture("MaskinvareKategoriSample.json"), categoryType)
+        val hardware: ResourceCollection<Maskinvare> = mapper.readValue(fixture("Maskinvare13622.json"), hardwareType)
+
+        val categoryReferences = MaskinvareKategoriReferences(categories.embedded.entries)
+        val maskinvare = hardware.embedded.entries.single()
+        val inputJson = jacksonObjectMapper().readTree(mapper.writeValueAsString(maskinvare))
+        assertEquals("13622", inputJson["systemId"]["identifikatorverdi"].asText())
+        assertEquals("1", inputJson["_links"]["maskinvarekategori"][0]["href"].asText().substringAfterLast("/"))
+
+        val resource = requireNotNull(maskinvare.toFintModel(categoryReferences))
+        val entry = SyncPageEntry.of(resource.systemId.identifikatorverdi, resource)
+        val json = jacksonObjectMapper().readTree(mapper.writeValueAsString(entry))
+
+        assertEquals("13622", json["identifier"].asText())
+        assertEquals("0bd4aa30-3b5c-4560-a496-813bde6919a7", json["resource"]["dataobjektId"]["identifikatorverdi"].asText())
+        assertEquals("\${ressurs.kodeverk.enhetstype}/systemid/5", json["resource"]["_links"]["enhetstype"][0]["href"].asText())
+        assertEquals("\${ressurs.kodeverk.status}/systemid/9", json["resource"]["_links"]["status"][0]["href"].asText())
+    }
+
+    @Test
     fun `production JSON mapper retains VAMS category links`() {
         val mapper = JsonMapper.builder().build()
         val categoryType = mapper.typeFactory.constructParametricType(ResourceCollection::class.java, MaskinvareKategori::class.java)
