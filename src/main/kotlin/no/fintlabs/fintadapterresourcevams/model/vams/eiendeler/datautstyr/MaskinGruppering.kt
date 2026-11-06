@@ -1,14 +1,13 @@
 package no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.datautstyr
 
 import no.fintlabs.fintadapterresourcevams.model.vams.Timestamp
-import no.fintlabs.fintadapterresourcevams.model.vams.getIdentifikatorLinkOrNull
+import no.fintlabs.fintadapterresourcevams.model.vams.eiendeler.kodeverk.MaskinvareKategoriReferences
 import no.fintlabs.fintadapterresourcevams.model.vams.getNonBlankLinkOrNull
 import no.fintlabs.fintadapterresourcevams.model.vams.getSystemIdLinkOrNull
 import no.novari.fint.model.felles.kompleksedatatyper.Identifikator
 import no.novari.fint.model.resource.FintLinks
 import no.novari.fint.model.resource.Link
 import no.novari.fint.model.resource.ressurs.datautstyr.EnhetsgruppeResource
-import no.novari.fint.model.resource.ressurs.kodeverk.EnhetstypeResource
 import no.novari.fint.model.resource.ressurs.kodeverk.PlattformResource
 import org.slf4j.LoggerFactory
 
@@ -21,11 +20,11 @@ data class MaskinGruppering(
 
     override fun getLinks(): Map<String, List<Link>> = linkMap
 
-    fun toFintModel(): EnhetsgruppeResource? {
+    fun toFintModel(categoryReferences: MaskinvareKategoriReferences): EnhetsgruppeResource? {
         val validSystemId = systemId?.takeIf { !it.identifikatorverdi.isNullOrBlank() }
         val validName = navn?.takeIf { it.isNotBlank() }
         val org = links.getNonBlankLinkOrNull("virksomhet")
-        val enhetstype = links.getSystemIdLinkOrNull("maskinkategori", EnhetstypeResource::class.java)
+        val enhetstype = categoryReferences.resolve(links, "maskinkategori")
         val plattform = links.getSystemIdLinkOrNull("plattform", PlattformResource::class.java)
 
         if (validSystemId == null || validName == null || org == null || enhetstype == null || plattform == null) {

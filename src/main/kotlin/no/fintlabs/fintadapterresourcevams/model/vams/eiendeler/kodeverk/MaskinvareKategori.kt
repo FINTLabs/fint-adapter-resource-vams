@@ -16,9 +16,13 @@ data class MaskinvareKategori(
     override fun getLinks(): Map<String, List<Link>> = linkMap
 
     fun toFintModel(): EnhetstypeResource? {
-        val validSystemId = systemId?.takeIf { !it.identifikatorverdi.isNullOrBlank() }
         val validKode = kode?.takeIf { it.isNotBlank() }
         val validName = navn?.takeIf { it.isNotBlank() }
+        val validSystemId =
+            systemId?.takeIf { !it.identifikatorverdi.isNullOrBlank() }
+                ?: validKode?.let { fallbackKode ->
+                    Identifikator().apply { identifikatorverdi = fallbackKode }
+                }
 
         if (validSystemId == null || validKode == null || validName == null) {
             log.warn(

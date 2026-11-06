@@ -15,13 +15,15 @@ class EnhetstypeRepository(
     override fun getResources(): List<EnhetstypeResource> =
         runBlocking {
             val data =
-                vamsClient
-                    .getRequestData("kodeverk/maskinvarekategori/", MaskinvareKategori::class.java)
-                    .unwrap { it.toFintModel() }
+                getCategories()
+                    .map { it.toFintModel() }
                     .filterNotNull()
             log.info("Fetching Enhetstype from Vams, {} resources returned.", data.size)
             data
         }
+
+    suspend fun getCategories(): List<MaskinvareKategori> =
+        vamsClient.getRequestData("kodeverk/maskinvarekategori/", MaskinvareKategori::class.java).embedded.entries
 
     override fun getUpdatedResources(): List<EnhetstypeResource> = emptyList()
 
