@@ -31,11 +31,9 @@ data class Maskinvare(
 
         if (validSystemId == null || validSerienummer == null || administrator == null || enhetstype == null || plattform == null) {
             log.warn(
-                "Skipping invalid Maskinvare from VAMS: systemId={}, serienummer={}, maskinvarekategori={}, resolvedEnhetstype={}",
+                "Skipping invalid Maskinvare from VAMS: systemId={}, serienummer={}",
                 systemId?.identifikatorverdi,
                 serienummer,
-                links["maskinvarekategori"]?.map { it.href },
-                enhetstype?.href,
             )
             return null
         }
