@@ -1,0 +1,52 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: bfk-no
+resources:
+  - ../../../base
+labels:
+  - includeSelectors: true
+    pairs:
+      app.kubernetes.io/instance: fint-adapter-resource-vams_bfk-no
+      fintlabs.no/org-id: bfk.no
+patches:
+  - target:
+      kind: Application
+      name: fint-adapter-resource-vams
+    patch: |-
+      - op: replace
+        path: "/spec/orgId"
+        value: "bfk.no"
+      - op: add
+        path: "/spec/imagePullSecrets"
+        value:
+          - ghcr
+  - target:
+      kind: ConfigMap
+      name: fint-adapter-resource-vams
+    patch: |-
+      - op: replace
+        path: "/data/fint.adapter.base-url"
+        value: "https://api.felleskomponent.no"
+      - op: replace
+        path: "/data/fint.adapter.id"
+        value: "https://bfk.no/ressurs/vams"
+      - op: replace
+        path: "/data/fint.adapter.org-id"
+        value: "bfk.no"
+      - op: replace
+        path: "/data/vams.client.county-code"
+        value: "bfk"
+  - target:
+      kind: FintAdapter
+      name: resource-vams-adapter
+    patch: |-
+      - op: replace
+        path: "/spec/orgId"
+        value: "bfk.no"
+  - target:
+      kind: OnePasswordItem
+      name: fint-adapter-resource-vams
+    patch: |-
+      - op: replace
+        path: "/spec/itemPath"
+        value: "vaults/aks-api-vault/items/kontroll-vams-adapter-bfk"

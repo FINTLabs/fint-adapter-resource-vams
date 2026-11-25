@@ -17,6 +17,8 @@ on:
         options:
           - fintlabs-no
           - ofk-no
+          - afk-no
+          - bfk-no
 
 env:
   REGISTRY: ghcr.io
