@@ -35,7 +35,7 @@ patches:
         value: "bfk.no"
       - op: replace
         path: "/data/vams.client.county-code"
-        value: "bfk"
+        value: "BFK"
   - target:
       kind: FintAdapter
       name: resource-vams-adapter
